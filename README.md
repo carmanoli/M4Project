@@ -5,15 +5,15 @@ Projeto do módulo 4 do UpSkill
 
 ### Jogo Da Memória
 <ul>
-  <li><li>
-<ul>
+  <li></li>
+</ul>
 
 ### Jogo Do Galo
 <ul>
-  <li><li>
-<ul>
+  <li></li>
+</ul>
 
 ### Jogo Do 4 Em Linha
 <ul>
-  <li> Animação da bolinha a cair <li>
-<ul>
+  <li> Animação da bolinha a cair </li>
+</ul>
