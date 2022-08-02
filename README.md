@@ -3,6 +3,11 @@ Projeto do módulo 4 do UpSkill
 
 ## Ideias
 
+### Ideias Gerais
+<ul>
+  <li></li>
+</ul>
+
 ### Jogo Da Memória
 <ul>
   <li></li>
