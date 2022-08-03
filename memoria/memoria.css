@@ -1,0 +1,31 @@
+/*
+  Grid system
+*/
+.grid {
+  max-width: 100%;
+
+}
+
+.grid-row {
+  margin: 0 auto;
+  margin-bottom: 5px;
+  
+}
+
+.grid-card {
+  display: table-cell;
+}
+
+.grid-separator {
+  display: table-cell;
+  width: 20px;
+}
+
+.grid-row {
+  display: table;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
