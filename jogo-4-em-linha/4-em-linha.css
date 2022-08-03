@@ -1,0 +1,41 @@
+/* Game Board */
+.board{
+    height: 500px;
+    width: 630px;
+    background-color: lightgrey;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.cell{
+    height: 70px;
+    width: 70px;
+    margin: 5px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+#column-1, #column-2,#column-3, #column-4, #column-5, #column-6, #column-7{
+    margin: auto;
+    border-radius: 20px;
+}
+
+#column-1:hover, #column-2:hover,#column-3:hover, #column-4:hover, #column-5:hover, #column-6:hover, #column-7:hover{
+    background: rgb(167, 153, 153);
+}
+
+/* Cells Manipulation Styles*/
+.not-taken{
+    background: white;
+}
+
+.player1-color{
+    background: rgb(228, 31, 31);
+}
+.player2-color{
+    background: rgb(228, 228, 34);
+}

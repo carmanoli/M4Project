@@ -6,70 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4 Em Linha</title>
     <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="style-4-linha.css">
+    <link rel="stylesheet" href="4-em-linha.css">
 </head>
 <body>
     <h1>Connect Four</h1>
     <h3 class="player-turn"></h3>
 
-    <div class="container">
-        <table>
-            <tr>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-            </tr>
-            <tr>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-            </tr>
-            <tr>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-            </tr>
-            <tr>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-            </tr>
-            <tr>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-            </tr>
-            <tr>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-                <td class="slot"></td>
-            </tr>
-        </table>
+    <div class="board">
+       <div class="column" id="column-1">
+        <div class="cell not-taken" id="0_0">0,0</div>
+        <div class="cell not-taken" id="1_0">1,0</div>
+        <div class="cell not-taken" id="2_0">2,0</div>
+        <div class="cell player2-color"id="3_0">3,0</div>
+        <div class="cell not-taken"id="4_0">4,0</div>
+        <div class="cell not-taken" id="5_0">5,0</div>
+       </div>
+
+       <div class="column" id="column-2">
+        <div class="cell not-taken" id="0_1">0,1</div>
+        <div class="cell not-taken" id="1_1">1,1</div>
+        <div class="cell not-taken" id="2_1">2,1</div>
+        <div class="cell not-taken" id="3_1">3,1</div>
+        <div class="cell not-taken" id="4_1">4,1</div>
+        <div class="cell not-taken" id="5_1">5,1</div>
+       </div>
+
+       <div class="column" id="column-3">
+        <div class="cell not-taken" id="0_3">0,3</div>
+        <div class="cell not-taken" id="1_3">1,3</div>
+        <div class="cell not-taken" id="2_3">2,3</div>
+        <div class="cell not-taken" id="3_3">3,3</div>
+        <div class="cell not-taken" id="4_3">4,3</div>
+        <div class="cell not-taken" id="5_3">5,3</div>
+       </div>
+
+       <div class="column" id="column-4">
+        <div class="cell not-taken" id="0_4">0,4</div>
+        <div class="cell not-taken" id="1_4">1,4</div>
+        <div class="cell not-taken" id="2_4">2,4</div>
+        <div class="cell not-taken" id="3_4">3,4</div>
+        <div class="cell not-taken" id="4_4">4,4</div>
+        <div class="cell not-taken" id="5_4">5,4</div>
+       </div>
+
+       <div class="column" id="column-5">
+        <div class="cell not-taken">0,5</div>
+        <div class="cell not-taken">1,5</div>
+        <div class="cell not-taken">2,5</div>
+        <div class="cell not-taken">3,5</div>
+        <div class="cell not-taken">4,5</div>
+        <div class="cell not-taken">5,5</div>
+       </div>
+
+       <div class="column" id="column-6">
+        <div class="cell not-taken">0,6</div>
+        <div class="cell not-taken">1,6</div>
+        <div class="cell not-taken">2,6</div>
+        <div class="cell not-taken">3,6</div>
+        <div class="cell not-taken">4,6</div>
+        <div class="cell not-taken">5,6</div>
+       </div>
+
+       <div class="column" id="column-7">
+        <div class="cell not-taken">0,7</div>
+        <div class="cell not-taken">1,7</div>
+        <div class="cell not-taken">2,7</div>
+        <div class="cell not-taken">3,7</div>
+        <div class="cell player1-color">4,7</div>
+        <div class="cell not-taken">5,7</div>
+       </div>
     </div>
-    <script src="script-4-linha.js"></script>
+    <script src="4-em-linha.js"></script>
 </body>
 </html>
