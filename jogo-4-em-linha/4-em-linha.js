@@ -1,10 +1,7 @@
 //Get DOM elements
-const columns = document.querySelectorAll('.column')
 const cells = document.querySelectorAll('.cell');
 
 //Players
-const player1 = 'red';
-const player2 = 'yellow';
 let currentPLayer = 1;
 
 //Playing Conditions
@@ -18,23 +15,35 @@ const init = () =>{
         cells[i].classList.add('not-taken');
     }
 }
-init();
+init()
 
-const playGame = () => {
-    currentPLayer = firstMove;
-    
-    for(i = 0; i < cells.length; i++){
-        cells[i].addEventListener('click',(e) =>{
-            //Get selected Cell and Column
-            const selectedCell = e.target.id.split("_")[0];
-            const selectedColumn = e.target.id.split("_")[1] 
-            console.log(selectedCell, selectedColumn)
-            const square = selectedCell + selectedColumn
-
-            console.log(square)
-            
-        })
+const clickCell = (idValue) =>{
+    let column = idValue.split('_')[1];
+    for(i = 5; i >= 0; i--){
+        let idElement = i + '_' + column
+        let cell = document.getElementById(idElement)
+        if(cell.classList.contains('not-taken')){
+            if(currentPLayer == 1){
+                cell.classList.remove('not-taken');
+                cell.classList.add('player1-color');
+                currentPLayer = 2;
+            }else{
+                cell.classList.remove('not-taken');
+                cell.classList.add('player2-color');
+                currentPLayer = 1;
+            }
+            return
+        }
     }
 
 }
-playGame()
+
+
+playGame = () => {
+    for(let i = 0; i < cells.length; i++){
+    cells[i].addEventListener('click', () =>{
+        clickCell(cells[i].id)
+    });
+    }
+}
+playGame();
