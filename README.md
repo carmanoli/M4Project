@@ -21,4 +21,5 @@ Projeto do módulo 4 do UpSkill
 ### Jogo Do 4 Em Linha
 <ul>
   <li> Animação da bolinha a cair </li>
+  <li> Sortear qual o jogador que vai começar </li>
 </ul>
