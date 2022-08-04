@@ -1,4 +1,27 @@
 /* Game Board */
+body h1{
+    text-align: center;
+}
+
+.view-player{
+    display: flex;
+    background: rgb(149, 149, 177);
+}
+
+.player1-playing{
+    margin: auto;
+    border: 1px solid red;
+}
+.player2-playing{
+    margin: auto;
+    border: 1px solid yellow;
+}
+
+.board-header{
+    display: flex;
+    background-color: rgb(209, 250, 236);
+}
+
 .board{
     height: 500px;
     width: 630px;
@@ -23,7 +46,7 @@
     margin: auto;
     border-radius: 20px;
 }
-
+/* Columns effects */
 #column-1:hover, #column-2:hover,#column-3:hover, #column-4:hover, #column-5:hover, #column-6:hover, #column-7:hover{
     background: rgb(167, 153, 153);
 }

@@ -7,6 +7,7 @@ let winner = null;
 
 //Playing Conditions
 let isPLaying = true;
+let contador = cells.length;
 let firstMove = Math.floor(Math.random() * 2 + 1);
 
 //Inicialize Game
@@ -34,11 +35,7 @@ const clickCell = (idValue) =>{
                 cell.classList.remove('not-taken');
                 currentPLayer = 1;
             }
-            checkHorizontal()
-            checkVertical()
-            checkDiagonalLeftToRigth()
-            checkDiagonalRigthToLeft()
-            checkDraw()
+            checkWinConditions()
             console.log(winner)
             return
         }
@@ -124,13 +121,20 @@ checkDiagonalRigthToLeft = () =>{
 }
 
 checkDraw = () =>{
-    let contador = cells.length;
     contador --;
     console.log(contador)
     if(contador == 0){
         winner = 'Empate'
     }
-    return 
+    return winner
+}
+
+checkWinConditions = () =>{
+    checkVertical();
+    checkHorizontal();
+    checkDiagonalLeftToRigth();
+    checkDiagonalRigthToLeft();
+    checkDraw();
 }
 
 
