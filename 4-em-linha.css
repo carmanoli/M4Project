@@ -1,0 +1,94 @@
+body h1{
+    text-align: center;
+}
+
+/* Player Info */
+.player-info{
+    display: flex;
+}
+
+.player1-info{
+    width: 20%;
+    height: 50px;
+    text-align: center;
+    margin: auto;
+}
+
+.player2-info{
+    width: 20%;
+    height: 50px;
+    text-align: center;
+    margin: auto;
+}
+
+.player-active{
+    border: 3px solid greenyellow;
+    border-radius: 20px;
+}
+
+/* Game Board */
+.board-header{
+    height: 90px;
+    width: 630px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    background-color: rgb(209, 250, 236);
+}
+
+.view-play{
+    height: 70px;
+    width: 70px;
+    margin: auto;
+    border-radius: 50%;
+    text-align: center;
+    background-color: white;
+}
+
+.board{
+    height: 500px;
+    width: 630px;
+    background-color: lightgrey;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.cell{
+    height: 70px;
+    width: 70px;
+    margin: 5px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+#column-1, #column-2,#column-3, #column-4, #column-5, #column-6, #column-7{
+    margin: auto;
+    border-radius: 20px;
+}
+/* Columns effects */
+#column-1:hover, #column-2:hover,#column-3:hover, #column-4:hover, #column-5:hover, #column-6:hover, #column-7:hover{
+    background: rgb(167, 153, 153);
+}
+
+/* Cells Manipulation Styles*/
+.not-taken{
+    background: white;
+}
+
+.player1-color{
+    background: rgb(228, 31, 31);
+}
+.player1-move-color{
+    background: rgba(228, 31, 31, 0.486);
+}
+
+.player2-color{
+    background: rgb(228, 228, 34);
+}
+.player2-move-color{
+    background: rgba(228, 228, 34, 0.493);
+}
