@@ -5,7 +5,8 @@ Projeto do módulo 4 do UpSkill
 
 ### Ideias Gerais
 <ul>
-  <li></li>
+  <li>Criar um ficheiro JSON que contem os jogadores registrados com username, password, vitorias, derrotas e empate</li>
+   <li> Criar um perfil de jogador onde mostra o win rate </li>
 </ul>
 
 ### Jogo Da Memória
@@ -22,4 +23,5 @@ Projeto do módulo 4 do UpSkill
 <ul>
   <li> Animação da bolinha a cair </li>
   <li> Sortear qual o jogador que vai começar </li>
+   <li> Criar uma variavel para receber o vencedor e mostrar ao acabaar o jogo </li>
 </ul>
