@@ -1,25 +1,48 @@
-/* Game Board */
 body h1{
     text-align: center;
 }
 
-.view-player{
+/* Player Info */
+.player-info{
     display: flex;
-    background: rgb(149, 149, 177);
 }
 
-.player1-playing{
+.player1-info{
+    width: 20%;
+    height: 50px;
+    text-align: center;
     margin: auto;
-    border: 1px solid red;
-}
-.player2-playing{
-    margin: auto;
-    border: 1px solid yellow;
 }
 
+.player2-info{
+    width: 20%;
+    height: 50px;
+    text-align: center;
+    margin: auto;
+}
+
+.player-active{
+    border: 3px solid greenyellow;
+    border-radius: 20px;
+}
+
+/* Game Board */
 .board-header{
+    height: 90px;
+    width: 630px;
+    margin: auto;
     display: flex;
+    align-items: center;
     background-color: rgb(209, 250, 236);
+}
+
+.view-play{
+    height: 70px;
+    width: 70px;
+    margin: auto;
+    border-radius: 50%;
+    text-align: center;
+    background-color: white;
 }
 
 .board{
@@ -35,11 +58,16 @@ body h1{
 }
 
 .cell{
-    height: 70px;
-    width: 70px;
     margin: 5px;
-    border-radius: 50%;
+    background-color: blue;
     text-align: center;
+}
+
+.border-play{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: brown;
 }
 
 #column-1, #column-2,#column-3, #column-4, #column-5, #column-6, #column-7{
@@ -52,13 +80,33 @@ body h1{
 }
 
 /* Cells Manipulation Styles*/
+/* Tornar a div de dentro branca e o resto ivisivel */
+
 .not-taken{
-    background: white;
+    background-color: white;
 }
 
 .player1-color{
     background: rgb(228, 31, 31);
 }
+.player1-move-color{
+    background: rgba(228, 31, 31, 0.486);
+}
+
 .player2-color{
     background: rgb(228, 228, 34);
 }
+.player2-move-color{
+    background: rgba(228, 228, 34, 0.493);
+}
+
+/* .not-taken::after {
+    content: "";
+    position: absolute;
+    background: #ffffff;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    border-radius: 50%;
+    top: 5px;
+    left: 5px;
+} */
