@@ -14,22 +14,22 @@
 </head>
 <body>
     <h1>Connect Four</h1>
-    <div class="view-player">
-      <div class="player1-playing">Teste1</div>
-      <div class="player2-playing">Teste2</div>
+    <div class="player-info">
+      <div class="player1-info player-active" id="player-one">Player 1</div>
+      <div class="player2-info" id="player-two">>Player 2</div>
     </div>
     <div class="board-header">
-      <div class="view-play">0</div>
-      <div class="view-play">1</div>
-      <div class="view-play">2</div>
-      <div class="view-play">3</div>
-      <div class="view-play">4</div>
-      <div class="view-play">5</div>
-      <div class="view-play">6</div>
+      <div class="view-play player1-move-color" id="header-1">0</div>
+      <div class="view-play player2-move-color" id="header-2">1</div>
+      <div class="view-play" id="header-3">2</div>
+      <div class="view-play" id="header-4">3</div>
+      <div class="view-play" id="header-5">4</div>
+      <div class="view-play" id="header-6">5</div>
+      <div class="view-play" id="header-7">6</div>
     </div>
     <div class="board">
        <div class="column" id="column-1">
-        <div class="cell not-taken" id="0_0">0,0</div>
+        <div class="cell player1-color" id="0_0">0,0</div>
         <div class="cell not-taken" id="1_0">1,0</div>
         <div class="cell not-taken" id="2_0">2,0</div>
         <div class="cell not-taken" id="3_0">3,0</div>
