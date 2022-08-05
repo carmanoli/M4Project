@@ -3,15 +3,17 @@ window.onload = createGame;
 function createGame(){
   // cartada - hand
 
-  gameSize = 20;
-  columns = 5;
+  gameSize = 12;
+  columns = 4;
   rows = gameSize / columns;
   setGameState();
 
-  console.log(gameState);
+ // console.log(gameState);
   
   dealCards();
   showGrid();
+
+  
 }
 
 // read files from git
@@ -46,11 +48,12 @@ let turnState = 0; // each turn has the following sequential states:
 // has the game ended?
 // reset the turnState
 
-
+let flipTimeout = 1000;
 function getCardID(row, column){
   // given a row and a column get the id of the card
   let key = row * columns + column;
-  return gameState[cardHand[key]].cardId;
+  return gameState[key].cardId;
+  // return gameState[cardHand[key]].cardId;
 }
 
 function setGameState(){
@@ -64,9 +67,10 @@ function setGameState(){
 
 function dealCards(){
   cardHand = [...Array(gameSize).keys()];
-  console.log(cardHand);
-  shuffle(cardHand);
-  console.log(cardHand);
+  // console.log(cardHand);
+  // shuffle(cardHand);
+  shuffleGameState();
+  // console.log(cardHand);
 }
 
 function showGrid() {
@@ -89,43 +93,98 @@ function showGrid() {
         case  'shown':
           htmlCard += `<img id='cardKey-${row * columns + i}' class="card" src="./carddeck/poker/${getCardID(row, i)}.png">`;
           break;
+        case  'match':
+          htmlCard += `<img id='cardKey-${row * columns + i}' class="card" style="visibility: hidden;"  src="./carddeck/poker/backcard.png">`;
+          break;
       }
       htmlCard +=  `</div>`;
 
       gridRow.append(
         htmlCard
       );
-      console.log("row: ", row, " column: ", i, "getCardID: ", getCardID(row, i));
+      // console.log("row: ", row, " column: ", i, "getCardID: ", getCardID(row, i));
     }
   }  
   setClick();
 }
 
 
-function handleTurnEvent(cardId){
-  // if the user clicked on the card that is already turned we will not do anything
-  
+function handleTurnEvent(card){
 
+
+  if (card.cardState == 'shown' || card.cardState == 2){
+    // if the user clicked on the card that is already turned we will not do anything
+    // also if cardState == 2, means it is validting if there is a match
+    
+    return;
+  }
+  
   turnState++;
   switch (turnState){
     case 1:
-      // sart of the turn
-  }
+      // start of the turn
+      card.cardState = 'shown';
 
-  switch (gameState[event.target.id.split("-")[1]].cardState) {
-    case  'hidden':
-      gameState[event.target.id.split("-")[1]].cardState = 'shown';
       break;
-    case  'shown':
-      gameState[event.target.id.split("-")[1]].cardState = 'hidden';
+    case 2:
+      // second card
+      // let's see if we have a match
+      card.cardState = 'shown';
+      
+      isMatch();
+
       break;
   }
-
   showGrid();
-
-
 }
 
+function isMatch(){
+  let shownCards = gameState.filter(card => {
+    return card.cardState == 'shown'
+  })
+
+  if (shownCards[0].cardId === shownCards[1].cardId) {
+    // we have a match
+
+    setTimeout(setCardState, flipTimeout, "match");
+    // setCardState("match");
+  }
+  else
+  {
+    console.log("=".repeat(80));
+    console.log("flipTimeout:");
+    console.log(flipTimeout);
+    
+    setTimeout(setCardState, flipTimeout, "hidden");
+    //setCardState("hide");
+  }
+  console.log("=".repeat(80));
+  console.log("shownCards:");
+  console.log(shownCards);
+}
+
+function setCardState(cardState){
+  // set cardstate of turned cards (2) to "hidden" or "match" accordingly
+
+  console.log("=".repeat(80));
+  console.log("hideCards:");
+
+  let shownCards = gameState.filter(card => {
+    return card.cardState == 'shown'
+  })
+  shownCards[0].cardState = cardState; 
+  shownCards[1].cardState = cardState; 
+
+  turnState = 0;
+  let hiddenCards = gameState.filter(card => {
+    return card.cardState == 'hidden'
+  })
+  if (hiddenCards.length === 0) {
+    // no more cards to play we have a win
+    alert("Parabés ganhou!: ", totalSeconds);
+  }
+  showGrid();
+}
 
 function setClick(){
   $(".card").click((event) => {
@@ -139,7 +198,25 @@ $(document).ready(function(){
   // setClick();
 });
 
-function shuffle(array) {
+function shuffleGameState() {
+  let currentIndex = gameState.length,  randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [gameState[currentIndex].cardId, gameState[randomIndex].cardId] = [
+      gameState[randomIndex].cardId, gameState[currentIndex].cardId];
+  }
+  // return array;
+}
+
+
+function shuffle2(array) {
   let currentIndex = array.length,  randomIndex;
 
   // While there remain elements to shuffle.
@@ -154,4 +231,31 @@ function shuffle(array) {
       array[randomIndex], array[currentIndex]];
   }
   return array;
+}
+
+
+
+
+
+// Timer
+// =====================================================================
+
+let totalSeconds = 0;
+
+setInterval(setTime, 1000);
+function setTime() {
+  ++ totalSeconds;
+  var minutesLabel = document.getElementById("minutes");
+  var secondsLabel = document.getElementById("seconds");
+  secondsLabel.innerHTML = pad(totalSeconds % 60);
+  minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+}
+
+function pad(val) {
+  var valString = val + "";
+  if (valString.length < 2) {
+    return "0" + valString;
+  } else {
+    return valString;
+  }
 }
