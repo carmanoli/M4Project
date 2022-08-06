@@ -9,7 +9,13 @@ Projeto do módulo 4 do UpSkill
    <li> Criar um perfil de jogador onde mostra o win rate </li>
 </ul>
 
+---
 ### Jogo Da Memória
+<details><summary>Code example</summary><p>
+  ...
+</p></details>
+
+---
 #### Vocabulário:
 O vocabulário, representa uma série de conceitos com que a aplicação tem que lidar e traduz-se normalmente em funções ou variáveis.
 - Game: cada uma das partidas cronometradas
@@ -19,11 +25,15 @@ O vocabulário, representa uma série de conceitos com que a aplicação tem que
 - Game Size: quantidade de cartas no tabuleiro, deve ser um número par e não pode ser superior ao dobro do Deck Size
 - Game State: representa o estado detalhado de todos os elemetos do jogo
 
+
+---
+
 ### Jogo Do Galo
 <ul>
   <li></li>
 </ul>
 
+---
 ### Jogo Do 4 Em Linha
 <ul>
   <li> Animação da bolinha a cair </li>
