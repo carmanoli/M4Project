@@ -1,5 +1,21 @@
 window.onload = createGame;
 
+let gameRecord;
+
+function createGameRecord() {
+  const date = new Date();
+  let dateJSON = d.toJSON();
+
+  gameRecord = {
+    username: "Carlos",
+    game: "memoria",
+    repeatedFlips: 0,
+    time: 0,
+    date: dateJSON,
+    gameSize: 0
+  }
+}
+
 function createGame(){
   // cartada - hand
 
@@ -47,6 +63,11 @@ let turnState = 0; // each turn has the following sequential states:
 // is there a match?
 // has the game ended?
 // reset the turnState
+
+let playState;
+// stopped
+// started
+// paused
 
 let flipTimeout = 1000;
 function getCardID(row, column){
@@ -169,11 +190,57 @@ function setCardState(cardState){
   console.log("=".repeat(80));
   console.log("hideCards:");
 
+  console.log("totalSeconds: ", totalSeconds);
+
+/*
   let shownCards = gameState.filter(card => {
-    return card.cardState == 'shown'
+    return card.cardState == 'shown';
   })
   shownCards[0].cardState = cardState; 
   shownCards[1].cardState = cardState; 
+
+
+  
+*/
+
+  // we will not refresh all the grid
+  // htmlCard += `<img id='cardKey-${row * columns + i}' class="card" src="./carddeck/poker/backcard.png">`;
+
+  // $('img[src="' + oldSrc + '"]').attr('src', newSrc);
+
+  gameState.forEach(
+    function (value, index) {
+      if (gameState[index].cardState === 'shown') {
+        gameState[index].cardState = cardState;
+        switch (cardState) {
+          case  'hidden':
+            $(`#cardKey-${index}`).attr('src', "./carddeck/poker/backcard.png");
+            break;
+          case  'match': 
+            $(`#cardKey-${index}`).attr('style', "visibility: hidden;");
+            break;        
+          }
+        }
+      }
+  );
+
+
+  switch (cardState) {
+    case  'hidden':
+  //    $(`#cardKey-${row * columns + i}`).attr('src', "./carddeck/poker/backcard.png");
+
+
+//      htmlCard += `<img id='cardKey-${row * columns + i}' class="card" src="./carddeck/poker/backcard.png">`;
+      break;
+    case  'shown':
+//      htmlCard += `<img id='cardKey-${row * columns + i}' class="card" src="./carddeck/poker/${getCardID(row, i)}.png">`;
+      break;
+    case  'match':
+//      htmlCard += `<img id='cardKey-${row * columns + i}' class="card" style="visibility: hidden;"  src="./carddeck/poker/backcard.png">`;
+      break;
+  }
+
+
 
   turnState = 0;
   let hiddenCards = gameState.filter(card => {
@@ -181,10 +248,15 @@ function setCardState(cardState){
   })
   if (hiddenCards.length === 0) {
     // no more cards to play we have a win
-    alert("Parabés ganhou!: ", totalSeconds);
+    alert("Parabés ganhou!: " + totalSeconds);
   }
-  showGrid();
+  
+  // showGrid();
 }
+
+
+
+
 
 function setClick(){
   $(".card").click((event) => {
