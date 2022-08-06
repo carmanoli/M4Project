@@ -34,3 +34,15 @@ img {
   max-height: 100%;
   display: block;
 }
+
+
+/* blink */
+.blink {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}

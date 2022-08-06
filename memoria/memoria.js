@@ -1,37 +1,27 @@
 window.onload = createGame;
 
-let gameRecord;
+let memoriaGame = new MemoriaGame;
 
-function createGameRecord() {
-  const date = new Date();
-  let dateJSON = d.toJSON();
-
-  gameRecord = {
-    username: "Carlos",
-    game: "memoria",
-    repeatedFlips: 0,
-    time: 0,
-    date: dateJSON,
-    gameSize: 0
+function gameStart() {
+  if ($('#player').val().trim() === ""){
+    alert("Insert a player name, please!");
+    return;
   }
+
+  memoriaGame.gameRecord.username = $('#player').val();
+  memoriaGame.gameRecord.gameSize = gameSize;
+
+  memoriaGame.start();
+  alert(JSON.stringify(memoriaGame.gameRecord));
+
+  $('#buttonPause').on('click', function(event) {
+    memoriaGame.pause();
+
+    $('#buttonPause').addClass("blink");
+  });
 }
 
-function createGame(){
-  // cartada - hand
-
-  gameSize = 12;
-  columns = 4;
-  rows = gameSize / columns;
-  setGameState();
-
- // console.log(gameState);
-  
-  dealCards();
-  showGrid();
-
-  
-}
-
+// let gameRecord;
 // read files from git
 // https://stackoverflow.com/questions/9272535/how-to-get-a-file-via-github-apis
 
@@ -64,12 +54,36 @@ let turnState = 0; // each turn has the following sequential states:
 // has the game ended?
 // reset the turnState
 
-let playState;
-// stopped
-// started
-// paused
-
 let flipTimeout = 1000;
+
+function createGame(){
+  // cartada - hand
+  $('#buttonPlay').on('click', function(event) {
+    if (memoriaGame.playState == "paused") {
+      memoriaGame.start();
+      $('#buttonPause').removeClass("blink");
+      return;
+    }
+    gameStart();
+  });
+
+
+
+
+
+  gameSize = 12;
+  columns = 4;
+  rows = gameSize / columns;
+
+  setGameState();
+
+ // console.log(gameState);
+  
+  dealCards();
+  showGrid();
+  
+}
+
 function getCardID(row, column){
   // given a row and a column get the id of the card
   let key = row * columns + column;
@@ -190,23 +204,9 @@ function setCardState(cardState){
   console.log("=".repeat(80));
   console.log("hideCards:");
 
-  console.log("totalSeconds: ", totalSeconds);
-
-/*
-  let shownCards = gameState.filter(card => {
-    return card.cardState == 'shown';
-  })
-  shownCards[0].cardState = cardState; 
-  shownCards[1].cardState = cardState; 
 
 
-  
-*/
 
-  // we will not refresh all the grid
-  // htmlCard += `<img id='cardKey-${row * columns + i}' class="card" src="./carddeck/poker/backcard.png">`;
-
-  // $('img[src="' + oldSrc + '"]').attr('src', newSrc);
 
   gameState.forEach(
     function (value, index) {
@@ -248,7 +248,10 @@ function setCardState(cardState){
   })
   if (hiddenCards.length === 0) {
     // no more cards to play we have a win
-    alert("Parabés ganhou!: " + totalSeconds);
+    // alert("Parabés ganhou!: " + totalSeconds);
+    memoriaGame.stop();
+    alert("Parabés ganhou!: " + memoriaGame.timerSeconds);
+
   }
   
   // showGrid();
@@ -287,7 +290,7 @@ function shuffleGameState() {
   // return array;
 }
 
-
+/*
 function shuffle2(array) {
   let currentIndex = array.length,  randomIndex;
 
@@ -304,30 +307,6 @@ function shuffle2(array) {
   }
   return array;
 }
+*/
 
 
-
-
-
-// Timer
-// =====================================================================
-
-let totalSeconds = 0;
-
-setInterval(setTime, 1000);
-function setTime() {
-  ++ totalSeconds;
-  var minutesLabel = document.getElementById("minutes");
-  var secondsLabel = document.getElementById("seconds");
-  secondsLabel.innerHTML = pad(totalSeconds % 60);
-  minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
-}
-
-function pad(val) {
-  var valString = val + "";
-  if (valString.length < 2) {
-    return "0" + valString;
-  } else {
-    return valString;
-  }
-}
