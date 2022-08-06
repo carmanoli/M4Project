@@ -10,9 +10,14 @@ Projeto do módulo 4 do UpSkill
 </ul>
 
 ### Jogo Da Memória
-<ul>
-  <li></li>
-</ul>
+#### Vocabulário:
+O vocabulário, representa uma série de conceitos com que a aplicação tem que lidar e traduz-se normalmente em funções ou variáveis.
+- Game: cada uma das partidas cronometradas
+- Flip: cada virar de uma carta
+- Turn: representa a jogada que começa o flip da primeira carta e termina com o flip da segunda carta
+- Deck Size: o número de cartas disponíveis
+- Game Size: quantidade de cartas no tabuleiro, deve ser um número par e não pode ser superior ao dobro do Deck Size
+- Game State: representa o estado detalhado de todos os elemetos do jogo
 
 ### Jogo Do Galo
 <ul>
