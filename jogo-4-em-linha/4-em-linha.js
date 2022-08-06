@@ -1,23 +1,45 @@
 //Get DOM elements
 const cells = document.querySelectorAll('.cell');
-const columns = $('.column')
-const headerCells = document.querySelectorAll('.view-play')
+const columns = $('.column');
+const headerCells = document.querySelectorAll('.view-play');
+
+const startingDisplayEl = document.querySelector('.start-display');
+const gameRulesDisplay = document.querySelector('.rules-display')
+const overallGameDisplay = document.querySelector('.game-conteiner');
+const gameOverDisplayEl = document.querySelector('.winner-display');
+
 const player1El = document.querySelector('#player-one');
 const player2El = document.querySelector('#player-two');
+const winnerResultEl = document.querySelector('#winner-result');
+const winnerColorEl = document.querySelector('#winner-color');
+
+const timerEl = document.querySelector('.timer');
+const finalTimerEl = document.querySelector('#game-time');
+
+//Buttons
+const startGameBtn = document.querySelector('#start-game-btn');
+const newGameBtn = document.querySelector('#new-game-btn');
+const gameRules = document.querySelector('#game-rules-btn')
+const backBtn = document.querySelector('#back-btn');
 
 //Players
-const player1 = 'Jimmy'
-const player2 = 'Boris'
+const player1 = document.querySelector('#player1-name');;
+const player2 = document.querySelector('#player2-name');
 let currentPLayer = 1;
 let winner = null;
 
 //Playing Conditions
 let isPLaying = false;
 let contador = cells.length;
-let firstMove = Math.floor(Math.random() * 2 + 1);
+
+let seconds = 0;
+let minutes = 0;
 
 //Inicialize Game
 const init = () =>{
+    startingDisplayEl.classList.add('hidden');
+    overallGameDisplay.classList.remove('hidden');
+
     //Clean all cells from last game
     for(i = 0; i < cells.length; i++){
         cells[i].classList.remove('player1-color', 'player2-color');
@@ -25,25 +47,55 @@ const init = () =>{
     }
     
     //Remove the last player active (In case of new game)
+    player1El.classList.add('waitting-player');
+    player2El.classList.add('waitting-player');
     player1El.classList.remove('player-active');
     player2El.classList.remove('player-active');
     //Sort the first player to play
+    let firstMove = Math.floor(Math.random() * 2 + 1);
     currentPLayer = firstMove;
     //Add first player active
     if(currentPLayer == 1){
+        player1El.classList.remove('waitting-player');
         player1El.classList.add('player-active');
     }else{
+        player2El.classList.remove('waitting-player');
         player2El.classList.add('player-active');
     }
 
     //Show player names
-    player1El.innerHTML = player1;
-    player2El.innerHTML = player2;
+    player1El.innerHTML = player1.value;
+    player2El.innerHTML = player2.value;
 
     //Start Game
+    gameOverDisplayEl.classList.add('hidden');
     isPLaying = true;
+    winner = null
+
+    //Reset Timer
+    clearInterval(countTimer)
+    seconds = 0
+    minutes = 0
 }
-init()
+
+//Timmer
+countTimer = () =>{
+    setInterval(() =>{ 
+        if(!isPLaying) return
+        seconds++;
+        if(seconds >= 60){
+            seconds = 0
+            minutes++
+        }
+
+        let s = seconds < 10 ? '0' + seconds: seconds;
+        let m = minutes < 10 ? '0' + minutes: minutes;
+
+       
+        timerEl.innerHTML = m + ':' + s;
+
+    }, 1000)
+}
 
 //Game Logic \\\\ Changing the game status
 const clickCell = (idValue) =>{
@@ -63,7 +115,9 @@ const clickCell = (idValue) =>{
                 cell.classList.add('player1-color');
                 cell.classList.remove('not-taken');
 
+                player1El.classList.add('waitting-player');
                 player1El.classList.remove('player-active');
+                player2El.classList.remove('waitting-player');
                 player2El.classList.add('player-active');
 
                 currentPLayer = 2;
@@ -71,7 +125,9 @@ const clickCell = (idValue) =>{
                 cell.classList.add('player2-color');
                 cell.classList.remove('not-taken');
 
+                player2El.classList.add('waitting-player');
                 player2El.classList.remove('player-active');
+                player1El.classList.remove('waitting-player');
                 player1El.classList.add('player-active');
 
                 currentPLayer = 1;
@@ -83,7 +139,21 @@ const clickCell = (idValue) =>{
             //End Game
             if(winner != null){
                 isPLaying = false
-                console.log(winner)
+                gameOverDisplayEl.classList.remove('hidden')
+                
+                let s = seconds < 10 ? '0' + seconds: seconds;
+                let m = minutes < 10 ? '0' + minutes: minutes;
+                let minOrSec = minutes >= 1? 'minutes' : 'seconds'
+                timerEl.innerHTML = m + ':' + s;
+                finalTimerEl.innerHTML = `The game lasted ${m}:${s} ${minOrSec}`
+
+                if(currentPLayer === 1){
+                    winnerColorEl.style.background = 'yellow';
+                    winnerResultEl.innerHTML = player2.value + ' Won';
+                }else{
+                    winnerColorEl.style.background = 'red';
+                    winnerResultEl.innerHTML = player1.value + ' Won';
+                }
             }
             return
         }
@@ -186,9 +256,10 @@ checkWinConditions = () =>{
 
 //Play the Game
 playGame = () => {
+    //Board header showing color
     columns.each((idx, column) =>{
+
         column.addEventListener('mouseenter', ()=>{
-            
             if(currentPLayer == 1){
                 headerCells[idx].classList.add('player1-move-color');
                 
@@ -196,9 +267,15 @@ playGame = () => {
                 headerCells[idx].classList.add('player2-move-color');
             }
         })
+        //Reset color
         column.addEventListener('mouseleave', ()=>{
             headerCells[idx].classList.remove('player1-move-color');
             headerCells[idx].classList.remove('player2-move-color');
+        })
+        //Reset color without leave mouse
+        column.addEventListener('click', () =>{
+            headerCells[idx].classList.remove('player1-move-color');
+            headerCells[idx].classList.remove('player2-move-color'); 
         })
     })
 
@@ -208,4 +285,26 @@ playGame = () => {
         });
     }
 }
-playGame();
+
+//button functions
+
+startGameBtn.addEventListener('click',() =>{
+    countTimer()
+    init();
+    playGame();
+})
+
+//New Game Function
+newGameBtn.addEventListener('click', () =>{
+    init()
+})
+
+gameRules.addEventListener('click', () =>{
+    gameRulesDisplay.classList.remove('hidden');
+    startingDisplayEl.classList.add('hidden');
+})
+
+backBtn.addEventListener('click', () =>{
+    startingDisplayEl.classList.remove('hidden');
+    gameRulesDisplay.classList.add('hidden');
+})
