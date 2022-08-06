@@ -1,5 +1,114 @@
 body h1{
     text-align: center;
+    margin-top: 10PX;
+}
+
+/*========== Start Display Style ==========*/
+.start-display{
+    text-align: center;
+    margin: auto;
+    padding: 7%;
+}
+a{
+   text-decoration: none;
+}
+
+.players-start-colors{
+    width: 300px;
+    height: 80px;
+    margin: auto;
+    display: flex;
+}
+
+.player1-vs-color{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-left: 5%;
+    background-color: rgb(228, 31, 31);
+}
+
+.player2-vs-color{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;;
+    margin-left: 45%;
+    background-color: rgb(228, 228, 34);
+}
+
+.player-vs input{
+    width: 300px;
+}
+
+.player-vs #player1-name{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.player-vs #player2-name{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.options-before-game input{
+    width: 175px;
+    padding: 5px;
+    margin-top: 5%;
+    background-color: white;
+    border: 1px solid rgb(196, 194, 194);
+    border-radius: 20px;
+}
+.options-before-game input:hover{
+    background-color: rgb(196, 194, 194);
+}
+.options-before-game input:active{
+    background-color: rgb(124, 124, 124);
+}
+
+/*========== Rules Style ==========*/
+
+.rules-display{
+    text-align: center;
+}
+
+#back-btn{
+    margin-top: 20px;
+    width: 175px;
+    padding: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: white;
+    border: 1px solid rgb(196, 194, 194);
+    border-radius: 20px;
+}
+#back-btn:hover{
+    background-color: rgb(196, 194, 194);
+}
+#back-btn:active{
+    background-color: rgb(124, 124, 124);
+}
+
+.rules-display h3{
+    margin-top: 20px;
+}
+
+.rules-display p{
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+.rules-display .board-img{
+    width: 30rem;
+    height: 20rem;
+}
+
+.rules-display li{
+   list-style: none;
+}
+
+/*========== Game Style ==========*/
+.game-conteiner{
+    margin-top: 50px;
 }
 
 /* Player Info */
@@ -7,24 +116,24 @@ body h1{
     display: flex;
 }
 
-.player1-info{
+.player1-info, .player2-info{
     width: 20%;
     height: 50px;
     text-align: center;
     margin: auto;
+    padding-top: 8px;
 }
 
-.player2-info{
-    width: 20%;
-    height: 50px;
-    text-align: center;
-    margin: auto;
-}
 
+.waitting-player{
+    border: 3px solid lightgrey;
+    border-radius: 20px;
+}
 .player-active{
     border: 3px solid greenyellow;
     border-radius: 20px;
 }
+
 
 /* Game Board */
 .board-header{
@@ -33,7 +142,6 @@ body h1{
     margin: auto;
     display: flex;
     align-items: center;
-    background-color: rgb(209, 250, 236);
 }
 
 .view-play{
@@ -58,17 +166,10 @@ body h1{
 }
 
 .cell{
-    margin: 5px;
-    background-color: blue;
+    padding: 5px;
     text-align: center;
 }
 
-.border-play{
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background-color: brown;
-}
 
 #column-1, #column-2,#column-3, #column-4, #column-5, #column-6, #column-7{
     margin: auto;
@@ -80,33 +181,80 @@ body h1{
 }
 
 /* Cells Manipulation Styles*/
-/* Tornar a div de dentro branca e o resto ivisivel */
-
-.not-taken{
+.border-play{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
     background-color: white;
 }
 
-.player1-color{
+.player1-color .border-play{
     background: rgb(228, 31, 31);
 }
 .player1-move-color{
     background: rgba(228, 31, 31, 0.486);
 }
 
-.player2-color{
+.player2-color .border-play{
     background: rgb(228, 228, 34);
 }
 .player2-move-color{
     background: rgba(228, 228, 34, 0.493);
 }
 
-/* .not-taken::after {
-    content: "";
-    position: absolute;
-    background: #ffffff;
-    width: calc(100% - 10px);
-    height: calc(100% - 10px);
+/*========== Result Style ==========*/
+.winner-display{
+    position: relative;
+    margin: auto;
+    margin-top: -400px;
+    width: 500px;
+    height:300px;
+    text-align: center;
+    border: 1px solid black;
+    background-color: white;
+}
+
+#winner-result{
+    margin-top: 10%;
+    margin-bottom: 5px;
+    padding-bottom: 10px;
+}
+
+.winner-display #winner-color{
+    margin-left: 42%;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    top: 5px;
-    left: 5px;
-} */
+    margin-bottom: 5px;
+    background-color: rgb(177, 41, 41);
+}
+
+.winner-display #game-time{
+    padding-top: 10px;
+}
+
+.options-after-game{
+    margin-top: 10%;
+}
+.options-after-game input{
+    width: 175px;
+    padding: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: white;
+    border: 1px solid rgb(196, 194, 194);
+    border-radius: 20px;
+}
+.options-after-game input:hover{
+    background-color: rgb(196, 194, 194);
+}
+.options-after-game input:active{
+    background-color: rgb(124, 124, 124);
+}
+
+/*========== Hide stuff ==========*/
+.hidden{
+    display: none;
+}
+
+/*========== Animations ==========*/
