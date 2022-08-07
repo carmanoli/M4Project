@@ -1,4 +1,5 @@
-![M4G](m4g.png)
+![M4G](https://github.com/carmanoli/M4Project/blob/main/M4G.png)
+
 # M4G
 
 Projeto do módulo 4 do UpSkill
