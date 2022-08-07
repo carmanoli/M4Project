@@ -1,5 +1,6 @@
-![M4G](m4g.png)
-# M4G
+![M4G](https://github.com/carmanoli/M4Project/blob/main/M4G.png)
+
+# M4G - Memória, Quatro, Galo
 
 Projeto do módulo 4 do UpSkill
 
