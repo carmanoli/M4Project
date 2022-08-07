@@ -7,6 +7,9 @@ $(document).ready(() => {
   });
 })
 */
+
+let url = location.href;
+
 function loadPage(menuId) {
   $('#content').load(`${menuId}\\${menuId}.html`);
 }
