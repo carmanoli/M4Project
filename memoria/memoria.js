@@ -57,6 +57,8 @@ let turnState = 0; // each turn has the following sequential states:
 let flipTimeout = 1000;
 
 function createGame(){
+  console.log(window.location.host); 
+  
   // cartada - hand
   $('#buttonPlay').on('click', function(event) {
     if (memoriaGame.playState == "paused") {
@@ -102,6 +104,7 @@ function dealCards(){
 }
 
 function showGrid() {
+
   $('#game-grid').empty();
   for (let row = 0; row < rows; row++){
     let gridRow = $(
@@ -197,6 +200,9 @@ function setCardState(cardState){
   console.log("=".repeat(80));
   console.log("hideCards:");
 
+
+  
+
   gameState.forEach(
     function (value, index) {
       if (gameState[index].cardState === 'shown') {
@@ -213,20 +219,6 @@ function setCardState(cardState){
       }
   );
 
-  switch (cardState) {
-    case  'hidden':
-  //    $(`#cardKey-${row * columns + i}`).attr('src', "./carddeck/poker/backcard.png");
-
-
-//      htmlCard += `<img id='cardKey-${row * columns + i}' class="card" src="./carddeck/poker/backcard.png">`;
-      break;
-    case  'shown':
-//      htmlCard += `<img id='cardKey-${row * columns + i}' class="card" src="./carddeck/poker/${getCardID(row, i)}.png">`;
-      break;
-    case  'match':
-//      htmlCard += `<img id='cardKey-${row * columns + i}' class="card" style="visibility: hidden;"  src="./carddeck/poker/backcard.png">`;
-      break;
-  }
 
   turnState = 0;
   let hiddenCards = gameState.filter(card => {
