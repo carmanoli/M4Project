@@ -1,22 +1,16 @@
 window.onload = createGame;
-
 let memoriaGame = new MemoriaGame;
-
 function gameStart() {
   if ($('#player').val().trim() === ""){
     alert("Insert a player name, please!");
     return;
   }
-
   memoriaGame.gameRecord.username = $('#player').val();
   memoriaGame.gameRecord.gameSize = gameSize;
-
   memoriaGame.start();
   alert(JSON.stringify(memoriaGame.gameRecord));
-
   $('#buttonPause').on('click', function(event) {
     memoriaGame.pause();
-
     $('#buttonPause').addClass("blink");
   });
 }
@@ -48,8 +42,8 @@ let gameState = [];
 
 let turnState = 0; // each turn has the following sequential states: 
 // 0 - none - no card has been turned
-// 1 - one card has been turned
-// 2 - two cards had been turned - we have to trigger validations:
+// 1 - one card has been flipped
+// 2 - two cards had been flipped - we have to trigger validations:
 // is there a match?
 // has the game ended?
 // reset the turnState
@@ -67,21 +61,14 @@ function createGame(){
     gameStart();
   });
 
-
-
-
-
   gameSize = 12;
   columns = 4;
   rows = gameSize / columns;
 
   setGameState();
-
- // console.log(gameState);
-  
+  // console.log(gameState);
   dealCards();
   showGrid();
-  
 }
 
 function getCardID(row, column){
@@ -94,7 +81,7 @@ function getCardID(row, column){
 function setGameState(){
   for (let i = 0; i < gameSize; i++){
 //    if (i % 2 == 0)
-      gameState.push({cardId: Math.floor(i / 2), cardState: 'hidden'});
+      gameState.push({cardId: Math.floor(i / 2), cardState: 'hidden', flipTimes: 0});
 //    else 
 //      gameState.push({cardId: Math.floor(i / 2), cardState: 'shown'});
   }
@@ -145,15 +132,14 @@ function showGrid() {
 
 
 function handleTurnEvent(card){
-
-
-  if (card.cardState == 'shown' || card.cardState == 2){
+  if (card.cardState == 'shown' || turnState == 2){
     // if the user clicked on the card that is already turned we will not do anything
-    // also if cardState == 2, means it is validting if there is a match
-    
+    // also if turnState == 2, means it is validting if there is a match
     return;
   }
   
+  card.flipTimes++;
+
   turnState++;
   switch (turnState){
     case 1:
@@ -180,6 +166,7 @@ function isMatch(){
 
   if (shownCards[0].cardId === shownCards[1].cardId) {
     // we have a match
+    
 
     setTimeout(setCardState, flipTimeout, "match");
     // setCardState("match");
@@ -204,10 +191,6 @@ function setCardState(cardState){
   console.log("=".repeat(80));
   console.log("hideCards:");
 
-
-
-
-
   gameState.forEach(
     function (value, index) {
       if (gameState[index].cardState === 'shown') {
@@ -224,7 +207,6 @@ function setCardState(cardState){
       }
   );
 
-
   switch (cardState) {
     case  'hidden':
   //    $(`#cardKey-${row * columns + i}`).attr('src', "./carddeck/poker/backcard.png");
@@ -240,26 +222,44 @@ function setCardState(cardState){
       break;
   }
 
-
-
   turnState = 0;
   let hiddenCards = gameState.filter(card => {
     return card.cardState == 'hidden'
   })
+
   if (hiddenCards.length === 0) {
     // no more cards to play we have a win
     // alert("Parabés ganhou!: " + totalSeconds);
     memoriaGame.stop();
-    alert("Parabés ganhou!: " + memoriaGame.timerSeconds);
+    // ===================================================================
+    // Save game results
+    memoriaGame.gameRecord.repeatedFlips = getRepeatedFlips();
+    memoriaGame.gameRecord.time = memoriaGame.timerSeconds;
+    memoriaGame.gameRecord.time = gameSize;
+    memoriaGame.playSate = memoriaGame.playSate;
 
+    alert("Parabés ganhou!: " + JSON.stringify(memoriaGame));
   }
-  
   // showGrid();
 }
 
+// Repeated times is when the card was flipped more than 2 times, ie,
+// when it was not only to view its face and to make a match, 
+// but as the user didn't memorize its face it repeated the flip
+function getRepeatedFlips() {
+  console.log("getRepeatedFlips: " + JSON.stringify(gameState));
+  console.log("getRepeatedFlips: " + gameState.map(card => card.flipTimes));
+  console.log("getRepeatedFlips: " + gameState.map(card => card.flipTimes).filter(flipTimes => flipTimes > 2));
+  console.log("getRepeatedFlips: " + gameState.map(card => card.flipTimes)
+  .filter(flipTimes => flipTimes > 2)
+  .map(flipTimes => flipTimes - 2)
+  .reduce((partialSum, a) => partialSum + a, 0));
 
-
-
+  return gameState.map(card => card.flipTimes)
+    .filter(flipTimes => flipTimes > 2)
+    .map(flipTimes => flipTimes - 2)
+    .reduce((partialSum, a) => partialSum + a, 0);
+}
 
 function setClick(){
   $(".card").click((event) => {
@@ -289,24 +289,3 @@ function shuffleGameState() {
   }
   // return array;
 }
-
-/*
-function shuffle2(array) {
-  let currentIndex = array.length,  randomIndex;
-
-  // While there remain elements to shuffle.
-  while (currentIndex != 0) {
-
-    // Pick a remaining element.
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
-  }
-  return array;
-}
-*/
-
-

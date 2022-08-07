@@ -1,7 +1,7 @@
 class MemoriaGame  {
 
   constructor () {
-    this.playState = "stopped";
+    this._playState = "stopped";
     // stopped
     // started
     // paused
@@ -13,6 +13,7 @@ class MemoriaGame  {
     this.gameRecord = {
       username: "",
       game: "memoria",
+      playSate: this.playState, 
       repeatedFlips: 0,
       time: 0,
       date: dateJSON,
@@ -23,24 +24,27 @@ class MemoriaGame  {
   // ================================================================================
   // playSate
   get playSate() {
-    return this.playSate;
+    return this._playSate;
   }
+
   set playSate(playState) {
-    this.playSate = playState;
+    this._playSate = playState;
   }
+
   stop(){
     this.playState = "stopped";
     this.#timerStop()
   }
+
   start(){
     if (this.playState == "paused") {
       this.playState = "started";
       return;
     }
-
     this.playState = "started";
     this.#timerStart();
   }
+
   pause(){
     this.playState = "paused";
   }
@@ -49,9 +53,6 @@ class MemoriaGame  {
   // timer
   // https://stackoverflow.com/questions/62378276/timer-code-with-the-javascript-class-and-constructor
   #timerStart(){
-    
-
-
     if (this.playState != "started") {
       this.playState = "started";
     }
