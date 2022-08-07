@@ -1,7 +1,0 @@
--- Feito --
-
---Por fazer --
-dividir o script em varios scripts
-variaveis no css 
-dividir o css em varios ficheiros
-bug no botão de new game (sorteio e condições de vitoria)
