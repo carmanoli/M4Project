@@ -1,6 +1,12 @@
-window.onload = createGame;
+//window.onload = createGame;
+$(document).ready(function(){
+  createGame();
+});
+
 let memoriaGame = new MemoriaGame;
 function gameStart() {
+  alert("gameStart");
+
   if ($('#player').val().trim() === ""){
     alert("Insert a player name, please!");
     return;
@@ -110,13 +116,13 @@ function showGrid() {
       htmlCard +=  `<div class="grid-card" >`;
       switch (gameState[row * columns + i].cardState) {
         case  'hidden':
-          htmlCard += `<img id='cardKey-${row * columns + i}' class="card" src="./carddeck/poker/backcard.png">`;
+          htmlCard += `<img id='cardKey-${row * columns + i}' class="card" src="/memoria/carddeck/poker/backcard.png">`;
           break;
         case  'shown':
-          htmlCard += `<img id='cardKey-${row * columns + i}' class="card" src="./carddeck/poker/${getCardID(row, i)}.png">`;
+          htmlCard += `<img id='cardKey-${row * columns + i}' class="card" src="/memoria/carddeck/poker/${getCardID(row, i)}.png">`;
           break;
         case  'match':
-          htmlCard += `<img id='cardKey-${row * columns + i}' class="card" style="visibility: hidden;"  src="./carddeck/poker/backcard.png">`;
+          htmlCard += `<img id='cardKey-${row * columns + i}' class="card" style="visibility: hidden;"  src="/memoria/carddeck/poker/backcard.png">`;
           break;
       }
       htmlCard +=  `</div>`;
@@ -197,7 +203,7 @@ function setCardState(cardState){
         gameState[index].cardState = cardState;
         switch (cardState) {
           case  'hidden':
-            $(`#cardKey-${index}`).attr('src', "./carddeck/poker/backcard.png");
+            $(`#cardKey-${index}`).attr('src', "/memoria/carddeck/poker/backcard.png");
             break;
           case  'match': 
             $(`#cardKey-${index}`).attr('style', "visibility: hidden;");
