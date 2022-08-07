@@ -25,7 +25,7 @@ function getQuoteData(){
   $.ajax(quoteSettings)
   .done(function (response) {
     quoteData = JSON.parse(response);
-    console.log(quoteData);
+    //console.log(quoteData);
   })
   .done(function () {
     let quote = JSON.stringify(quoteData[Math.floor(Math.random()*quoteData.length)].text);

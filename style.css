@@ -51,7 +51,7 @@
 
 #scroll-text {
   transform: translateX(100%);
-  animation: marquee 30s linear infinite;
+  animation: marquee 60s linear infinite;
 }
 
 @keyframes marquee {
@@ -59,6 +59,6 @@
     transform: translateX(100%);
   }
   to {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
 }

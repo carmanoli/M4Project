@@ -3,18 +3,32 @@ $(document).ready(function(){
   createGame();
 });
 
-let memoriaGame = new MemoriaGame;
+var memoriaGame = new MemoriaGame;
+/*
+// as this page may be loaded again from index
+var memoriaGameIsDeclared = true; 
+try{ memoriaGame; }
+catch(e) {
+    if(e.name == "ReferenceError") {
+      memoriaGameIsDeclared = false;
+    }
+}
+if (!memoriaGameIsDeclared) {
+  let memoriaGame = new MemoriaGame;
+}
+*/
+
 function gameStart() {
-  alert("gameStart");
 
   if ($('#player').val().trim() === ""){
     alert("Insert a player name, please!");
     return;
   }
   memoriaGame.gameRecord.username = $('#player').val();
-  memoriaGame.gameRecord.gameSize = gameSize;
+  memoriaGame.gameRecord.gameSize = memoriaGame.gameSize;
   memoriaGame.start();
   alert(JSON.stringify(memoriaGame.gameRecord));
+
   $('#buttonPause').on('click', function(event) {
     memoriaGame.pause();
     $('#buttonPause').addClass("blink");
@@ -25,10 +39,10 @@ function gameStart() {
 // read files from git
 // https://stackoverflow.com/questions/9272535/how-to-get-a-file-via-github-apis
 
-let cardHand; // disposition of the cards in the grid
-let columns, rows; // column star with 1, row star with zero
-let deckSize; 
-let gameSize; // current game number of cards
+// let cardHand; // disposition of the cards in the grid
+var columns, rows; // column star with 1, row star with zero
+var deckSize; 
+// var gameSize; // current game number of cards
               // must be an even number
               // will use ((gameSize / 2) * number) of cards
               // from the deckSize
@@ -41,12 +55,12 @@ let gameSize; // current game number of cards
 //                          v v v
 // gameState [Keys]       : 1 2 3 4 5 6 ... same as cardKey
 // gameState [Keys].cardId: 1 1 2 2 4 4 ...
-let gameState = [];
+var gameState = [];
 // cardId
 // cardState: [hidden, shown, match]
 // flipTimes // number of times the card has been shown/views
 
-let turnState = 0; // each turn has the following sequential states: 
+var turnState = 0; // each turn has the following sequential states: 
 // 0 - none - no card has been turned
 // 1 - one card has been flipped
 // 2 - two cards had been flipped - we have to trigger validations:
@@ -54,11 +68,11 @@ let turnState = 0; // each turn has the following sequential states:
 // has the game ended?
 // reset the turnState
 
-let flipTimeout = 1000;
+var flipTimeout = 1000;
 
 function createGame(){
   console.log(window.location.host); 
-  
+
   // cartada - hand
   $('#buttonPlay').on('click', function(event) {
     if (memoriaGame.playState == "paused") {
@@ -69,13 +83,14 @@ function createGame(){
     gameStart();
   });
 
-  gameSize = 12;
+  memoriaGame.gameSize = 12;
   columns = 4;
-  rows = gameSize / columns;
+  rows = memoriaGame.gameSize / columns;
 
   setGameState();
   // console.log(gameState);
-  dealCards();
+  // dealCards();
+  shuffleGameState();
   showGrid();
 }
 
@@ -87,20 +102,12 @@ function getCardID(row, column){
 }
 
 function setGameState(){
-  for (let i = 0; i < gameSize; i++){
+  for (let i = 0; i < memoriaGame.gameSize; i++){
 //    if (i % 2 == 0)
       gameState.push({cardId: Math.floor(i / 2), cardState: 'hidden', flipTimes: 0});
 //    else 
 //      gameState.push({cardId: Math.floor(i / 2), cardState: 'shown'});
   }
-}
-
-function dealCards(){
-  cardHand = [...Array(gameSize).keys()];
-  // console.log(cardHand);
-  // shuffle(cardHand);
-  shuffleGameState();
-  // console.log(cardHand);
 }
 
 function showGrid() {
@@ -138,7 +145,6 @@ function showGrid() {
   }  
   setClick();
 }
-
 
 function handleTurnEvent(card){
   if (card.cardState == 'shown' || turnState == 2){
@@ -200,9 +206,6 @@ function setCardState(cardState){
   console.log("=".repeat(80));
   console.log("hideCards:");
 
-
-  
-
   gameState.forEach(
     function (value, index) {
       if (gameState[index].cardState === 'shown') {
@@ -219,26 +222,30 @@ function setCardState(cardState){
       }
   );
 
-
   turnState = 0;
   let hiddenCards = gameState.filter(card => {
     return card.cardState == 'hidden'
   })
 
+  console.log("if (hiddenCards.length === 0):");
+
   if (hiddenCards.length === 0) {
     // no more cards to play we have a win
     // alert("Parabés ganhou!: " + totalSeconds);
+
     memoriaGame.stop();
+    console.log("memoriaGame.stop();:");
+
     // ===================================================================
     // Save game results
     memoriaGame.gameRecord.repeatedFlips = getRepeatedFlips();
     memoriaGame.gameRecord.time = memoriaGame.timerSeconds;
-    memoriaGame.gameRecord.time = gameSize;
+    // memoriaGame.gameSize = memoriaGame.gameSize;
     memoriaGame.playSate = memoriaGame.playSate;
 
-    alert("Parabés ganhou!: " + JSON.stringify(memoriaGame));
+    alert(`Parabés terminou em ${memoriaGame.timerSeconds}!`);
+    console.log("Parabés terminou!" + JSON.stringify(memoriaGame));
   }
-  // showGrid();
 }
 
 // Repeated times is when the card was flipped more than 2 times, ie,
@@ -261,15 +268,14 @@ function getRepeatedFlips() {
 
 function setClick(){
   $(".card").click((event) => {
-    // alert(JSON.stringify(event.target.id));
-    // alert(gameState[event.target.id.split("-")[1]].cardState );
+    if (memoriaGame.playState !== "started") {
+      alert("Game is not started!");
+      return;
+    }
+
     handleTurnEvent(gameState[event.target.id.split("-")[1]]);
   })
 }
-
-$(document).ready(function(){
-  // setClick();
-});
 
 function shuffleGameState() {
   let currentIndex = gameState.length,  randomIndex;
