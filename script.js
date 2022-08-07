@@ -8,8 +8,8 @@ $(document).ready(() => {
   
 })
 
-function loadPage(menuId) {
-  $('#content').load(`${menuId}\\${menuId}.html`);
+function loadPage(htmlPage) {
+  $('#content').load(`${htmlPage}`);
 }
 
 // =====================================================================

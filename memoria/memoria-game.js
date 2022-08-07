@@ -7,6 +7,7 @@ if (typeof window.MemoriaGame === 'undefined') {
     gameSize = 0;
 
     gameRecord = {
+      uuid: "",
       username: "",
       game: "memoria",
       playSate: this.playState, 
