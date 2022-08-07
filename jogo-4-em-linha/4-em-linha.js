@@ -21,6 +21,7 @@ const startGameBtn = document.querySelector('#start-game-btn');
 const newGameBtn = document.querySelector('#new-game-btn');
 const gameRules = document.querySelector('#game-rules-btn')
 const backBtn = document.querySelector('#back-btn');
+const viewLastPlaybtn = document.querySelector('#last-play-btn')
 
 //Players
 const player1 = document.querySelector('#player1-name');;
@@ -148,11 +149,16 @@ const clickCell = (idValue) =>{
                 finalTimerEl.innerHTML = `The game lasted ${m}:${s} ${minOrSec}`
 
                 if(currentPLayer === 1){
+                    player2El.classList.add('player-active')
                     winnerColorEl.style.background = 'yellow';
                     winnerResultEl.innerHTML = player2.value + ' Won';
-                }else{
+                }else if(currentPLayer === 2){
+                    player1El.classList.add('player-active')
                     winnerColorEl.style.background = 'red';
                     winnerResultEl.innerHTML = player1.value + ' Won';
+                }else{
+                    winnerColorEl.style.background = 'orange';
+                    winnerResultEl.innerHTML = "It's a Draw";
                 }
             }
             return
@@ -241,7 +247,8 @@ checkDiagonalRigthToLeft = () =>{
 checkDraw = () =>{
     contador --;
     if(contador == 0){
-        winner = 'Empate'
+        currentPLayer = 0
+        winner = 0
     }
     return
 }
@@ -289,9 +296,13 @@ playGame = () => {
 //button functions
 
 startGameBtn.addEventListener('click',() =>{
-    countTimer()
-    init();
-    playGame();
+    if(player1.value != '' && player2.value != ''){
+        countTimer()
+        init();
+        playGame();
+    }else{
+        alert('Missing player name!')
+    }
 })
 
 //New Game Function
@@ -307,4 +318,14 @@ gameRules.addEventListener('click', () =>{
 backBtn.addEventListener('click', () =>{
     startingDisplayEl.classList.remove('hidden');
     gameRulesDisplay.classList.add('hidden');
+})
+
+viewLastPlaybtn.addEventListener('click', () =>{
+    if(gameOverDisplayEl.classList.contains('reduce-opacity')){
+        gameOverDisplayEl.classList.remove('reduce-opacity')
+        viewLastPlaybtn.value = 'View Board'
+    }else{
+        gameOverDisplayEl.classList.add('reduce-opacity')
+        viewLastPlaybtn.value = 'View Status'
+    }
 })
