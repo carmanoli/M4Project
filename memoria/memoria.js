@@ -8,15 +8,25 @@ var memoriaGame = new MemoriaGame;
 function gameStart() {
   // localStorage.removeItem('M4G');
 
-  memoriaGame.gameSize = $('#gameSize').val();;
+  memoriaGame.gameSize = Number($('#gameSize').val());
   memoriaGame.player = $('#player').val();
 
-  memoriaGame.gameSize = 12;
-  columns = 4;
+  // memoriaGame.gameSize = 12;
+  switch (memoriaGame.gameSize) {
+    case 12:
+    case 16:
+      columns = 4;
+      break;
+    case 20:
+      columns = 5;
+      break;
+    default:
+      columns = 5;
+    }
   rows = memoriaGame.gameSize / columns;
 
   setGameState();
-  // console.log(gameState);
+  console.log(gameState);
   // dealCards();
   shuffleGameState();
   showGrid();
