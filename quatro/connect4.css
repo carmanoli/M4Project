@@ -1,0 +1,301 @@
+/* Color variables*/
+:root {
+    --color-player-1: rgb(230, 34, 34);
+    --color-player-2: rgb(228, 228, 34);
+    --color-player-1-move: rgba(204, 58, 58, 0.637);
+    --color-player-2-move: rgba(228, 228, 34, 0.493);
+    --color-active-player: greenyellow;
+    --color-waitting-player: lightgrey;
+    --background-color: white(252, 191, 59);
+    --btn-background-color-hover: rgb(196, 194, 194);
+    --btn-background-color-active: rgb(124, 124, 124);
+}
+
+body h1{
+    text-align: center;
+    margin-top: 10PX;
+}
+
+/*========== Start Display Style ==========*/
+.start-display{
+    text-align: center;
+    margin: auto;
+    padding: 7%;
+}
+
+a{
+   text-decoration: none;
+}
+
+.players-start-colors{
+    width: 300px;
+    height: 80px;
+    margin: auto;
+    display: flex;
+}
+
+.player1-vs-color{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-left: 5%;
+    background-color: var(--color-player-1);
+}
+
+.player2-vs-color{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;;
+    margin-left: 45%;
+    background-color: var(--color-player-2);
+}
+
+.player-vs input{
+    width: 300px;
+}
+
+.player-vs #player1-name{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.player-vs #player2-name{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.options-before-game input{
+    width: 175px;
+    padding: 5px;
+    margin-top: 5%;
+    background-color: var(--background-color);
+    border: 1px solid var(--btn-background-color-hover);
+    border-radius: 20px;
+}
+.options-before-game input:hover{
+    background-color: var(--btn-background-color-hover);
+}
+.options-before-game input:active{
+    background-color: var(--btn-background-color-active);
+}
+
+/*========== Rules Style ==========*/
+
+.rules-display{
+    text-align: center;
+}
+
+#back-btn{
+    margin-top: 20px;
+    width: 175px;
+    padding: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: white;
+    border: 1px solid var(--btn-background-color-hover);
+    border-radius: 20px;
+}
+#back-btn:hover{
+    background-color: var(--btn-background-color-hover);
+}
+#back-btn:active{
+    background-color: var(--btn-background-color-active);
+}
+
+.rules-display h3{
+    margin-top: 20px;
+}
+
+.rules-display p{
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+.rules-display .board-img{
+    width: 30rem;
+    height: 20rem;
+}
+
+.rules-display li{
+   list-style: none;
+}
+
+/*========== Game Style ==========*/
+.game-conteiner{
+    margin-top: 50px;
+}
+
+/* Player Info */
+.player-info{
+    display: flex;
+}
+
+.player1-info, .player2-info{
+    width: 20%;
+    height: 50px;
+    text-align: center;
+    margin: auto;
+    padding-top: 8px;
+}
+
+
+.waitting-player{
+    border: 3px solid var(--color-waitting-player);
+    border-radius: 20px;
+}
+.player-active{
+    border: 3px solid var(--color-active-player);
+    border-radius: 20px;
+}
+
+
+/* Game Board */
+.board-header{
+    height: 90px;
+    width: 630px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.view-play{
+    height: 70px;
+    width: 70px;
+    margin: auto;
+    border-radius: 50%;
+    text-align: center;
+    background-color: white;
+}
+
+.board{
+    height: 500px;
+    width: 630px;
+    background-color: lightgrey;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.cell{
+    padding: 5px;
+    text-align: center;
+}
+
+
+#column-1, #column-2,#column-3, #column-4, #column-5, #column-6, #column-7{
+    margin: auto;
+    border-radius: 20px;
+}
+/* Columns effects */
+#column-1:hover, #column-2:hover,#column-3:hover, #column-4:hover, #column-5:hover, #column-6:hover, #column-7:hover{
+    background: rgb(167, 153, 153);
+}
+
+/* Cells Manipulation Styles*/
+.border-play{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.player1-color .border-play{
+    background: var(--color-player-1);
+}
+.player1-move-color, .player1-move-anim-bg {
+    background: var(--color-player-1-move);
+}
+
+.player2-color .border-play{
+    background: var(--color-player-2);
+}
+.player2-move-color, .player2-move-anim-bg {
+    background: var(--color-player-2-move);
+}
+
+.player1-move-anim0, .player2-move-anim0{
+    transition: transform 1s linear;
+    transform: translateY(495px);
+}
+.player1-move-anim1, .player2-move-anim1{
+    transition: transform 0.85s linear;
+    transform: translateY(415px);
+}
+.player1-move-anim2, .player2-move-anim2{
+    transition: transform 0.70s linear;
+    transform: translateY(335px);
+}
+.player1-move-anim3, .player2-move-anim3{
+    transition: transform 0.55s linear;
+    transform: translateY(255px);
+}
+.player1-move-anim4, .player2-move-anim4{
+    transition: transform 0.40s linear;
+    transform: translateY(175px);
+}
+.player1-move-anim5, .player2-move-anim5{
+    transition: transform 0.25s linear;
+    transform: translateY(95px);
+}
+
+/*========== Result Style ==========*/
+.winner-display{
+    position: relative;
+    margin: auto;
+    margin-top: -400px;
+    width: 500px;
+    height:300px;
+    text-align: center;
+    border: 1px solid black;
+    background-color: white;
+}
+
+#winner-result{
+    margin-top: 10%;
+    margin-bottom: 5px;
+    padding-bottom: 10px;
+}
+
+.winner-display #winner-color{
+    margin-left: 42%;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+    background-color: var(--color-player-1);
+}
+
+.winner-display #game-time{
+    padding-top: 10px;
+}
+
+.options-after-game{
+    margin-top: 2%;
+}
+.options-after-game input{
+    width: 175px;
+    padding: 5px;
+    margin: 5px 7px -3px 7px;
+    background-color: white;
+    border: 1px solid var(--btn-background-color-hover);
+    border-radius: 20px;
+}
+.options-after-game input:hover{
+    background-color: var(--btn-background-color-hover);
+}
+.options-after-game input:active{
+    background-color: var(--btn-background-color-active);
+}
+
+/*========== Hide stuff ==========*/
+.hidden{
+    display: none;
+}
+
+.reduce-opacity{
+    opacity: 0;
+}
+/*========== Animations ==========*/
