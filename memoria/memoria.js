@@ -1,36 +1,44 @@
 //window.onload = createGame;
 $(document).ready(function(){
-  createGame();
+  setupGame();
 });
 
 var memoriaGame = new MemoriaGame;
-/*
-// as this page may be loaded again from index
-var memoriaGameIsDeclared = true; 
-try{ memoriaGame; }
-catch(e) {
-    if(e.name == "ReferenceError") {
-      memoriaGameIsDeclared = false;
-    }
-}
-if (!memoriaGameIsDeclared) {
-  let memoriaGame = new MemoriaGame;
-}
-*/
 
 function gameStart() {
+  // localStorage.removeItem('M4G');
 
-  console.log(uuidv4());
+  memoriaGame.gameSize = $('#gameSize').val();;
+  memoriaGame.player = $('#player').val();
 
+  memoriaGame.gameSize = 12;
+  columns = 4;
+  rows = memoriaGame.gameSize / columns;
+
+  setGameState();
+  // console.log(gameState);
+  // dealCards();
+  shuffleGameState();
+  showGrid();
+
+
+
+
+
+  // console.log(uuidv4());
+  $("#memoria-setup").css("display", "none");
+  $("#game-grid").css("display","");
 
   if ($('#player').val().trim() === ""){
     alert("Insert a player name, please!");
     return;
   }
-  memoriaGame.gameRecord.username = $('#player').val();
-  memoriaGame.gameRecord.gameSize = memoriaGame.gameSize;
+  
+
+  console.log("memoriaGame.payer", memoriaGame.payer);
+
   memoriaGame.start();
-  alert(JSON.stringify(memoriaGame.gameRecord));
+//  alert(JSON.stringify(memoriaGame.gameRecord));
 
   $('#buttonPause').on('click', function(event) {
     memoriaGame.pause();
@@ -73,11 +81,12 @@ var turnState = 0; // each turn has the following sequential states:
 
 var flipTimeout = 1000;
 
-function createGame(){
+function setupGame(){
   console.log(window.location.host); 
 
   // cartada - hand
   $('#buttonPlay').on('click', function(event) {
+    alert($("#gameSize").val());
     if (memoriaGame.playState == "paused") {
       memoriaGame.start();
       $('#buttonPause').removeClass("blink");
@@ -86,15 +95,6 @@ function createGame(){
     gameStart();
   });
 
-  memoriaGame.gameSize = 12;
-  columns = 4;
-  rows = memoriaGame.gameSize / columns;
-
-  setGameState();
-  // console.log(gameState);
-  // dealCards();
-  shuffleGameState();
-  showGrid();
 }
 
 function getCardID(row, column){
@@ -250,24 +250,8 @@ function setCardState(cardState){
     alert(`Parabéns terminou em ${memoriaGame.timerSeconds}!`);
     console.log("memoriaGame.gameRecord: " + JSON.stringify(memoriaGame.gameRecord));
 
-    saveGameRecord();
+    saveGameRecord(memoriaGame.gameRecord);
   }
-}
-
-function uuidv4() {
-  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-  );
-}
-
-function saveGameRecord(){
-  let M4G_string = localStorage.getItem("M4G");
-  let M4G = [];
-  if (M4G_string) {
-    M4G = JSON.parse(M4G_string);
-  }
-  M4G.push(memoriaGame.gameRecord)
-  localStorage.setItem("M4G", JSON.stringify(M4G));
 }
 
 // Repeated times is when the card was flipped more than 2 times, ie,

@@ -1,19 +1,33 @@
-
 if (typeof window.MemoriaGame === 'undefined') {
   // as this page may be loaded again from index
   console.log("window.MemoriaGame:", window.MemoriaGame);
   window.MemoriaGame = class   {
 
     gameSize = 0;
+    player = "";
 
-    gameRecord = {
+    get gameRecord() {
+      console.log("this.#gameRecord: ", this.#gameRecord);
+      console.log("this.player: ", this.player);
+      
+      this.#gameRecord.player = this.player;
+      this.#gameRecord.gameSize = this.gameSize;
+      this.#gameRecord.playSate = this._playState;
+      
+      this.#gameRecord.changed = new Date().toJSON(),
+      console.log("this.#gameRecord: ", this.#gameRecord);
+      return this.#gameRecord;
+    }
+
+    #gameRecord = {
       uuid: "",
-      username: "",
+      player: "",
       game: "memoria",
-      playSate: this.playState, 
+      playSate: this._playState, 
       repeatedFlips: 0,
       time: 0,
-      date: new Date().toJSON(),
+      created: new Date().toJSON(),
+      changed: new Date().toJSON(),
       gameSize: 0
     }
 
@@ -88,7 +102,5 @@ if (typeof window.MemoriaGame === 'undefined') {
         ;
       document.getElementById("timer").value = timerString;
     }
-
   }
-
 }

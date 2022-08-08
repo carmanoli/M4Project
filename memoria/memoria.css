@@ -1,12 +1,11 @@
-/*
-  Grid system
-*/
 .grid {
   max-width: 100%;
   width: 600px;
   margin: auto;
 }
-
+/*
+  Grid system
+*/
 .grid-row {
   margin: 0 auto;
   margin-bottom: 5px;

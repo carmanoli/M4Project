@@ -55,7 +55,28 @@
 
   </div>
 
-  <div id="game-grid" class="grid mt-5">
+  <div id="memoria-setup">
+    <div class="row mt-5 ">
+      <div class="col-4">
+      </div>
+      <div class="col-4 border border-primary p-3">
+
+        <label class="form-check-label" for="gameSize">
+          Nível de dificuldade:
+        </label>
+        <select id="gameSize" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+          <option value="12" selected>Matriz 3x4</option>
+          <option value="16">Matriz 4x4</option>
+          <option value="20">Matriz 5x4</option>
+        </select>
+
+      </div>
+      <div class="col-4">
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" id="game-grid" class="grid mt-5">
   </div>
 
 </body>
