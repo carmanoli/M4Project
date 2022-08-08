@@ -1,6 +1,6 @@
 if (typeof window.MemoriaGame === 'undefined') {
   // as this page may be loaded again from index
-  console.log("window.MemoriaGame:", window.MemoriaGame);
+  console.log("window.MemoriaGame:");
   window.MemoriaGame = class   {
 
     gameSize = 0;
@@ -10,7 +10,7 @@ if (typeof window.MemoriaGame === 'undefined') {
       console.log("this.#gameRecord: ", this.#gameRecord);
       console.log("this.player: ", this.player);
       
-      this.#gameRecord.player = this.player;
+     
       this.#gameRecord.gameSize = this.gameSize;
       this.#gameRecord.playSate = this._playState;
       
@@ -21,7 +21,7 @@ if (typeof window.MemoriaGame === 'undefined') {
 
     #gameRecord = {
       uuid: "",
-      player: "",
+      player: [],
       game: "memoria",
       playSate: this._playState, 
       repeatedFlips: 0,
@@ -31,7 +31,8 @@ if (typeof window.MemoriaGame === 'undefined') {
       gameSize: 0
     }
 
-    constructor () {
+    constructor (players) {
+      this.#gameRecord.player.push (...players);
       this._playState = "stopped";
       // stopped
       // started

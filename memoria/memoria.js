@@ -3,11 +3,11 @@ $(document).ready(function(){
   setupGame();
 });
 
-var memoriaGame = new MemoriaGame;
+var memoriaGame;
 
 function gameStart() {
-  // localStorage.removeItem('M4G');
-
+  //localStorage.removeItem('M4G');
+  console.log("memoriaGame: ", memoriaGame);
   memoriaGame.gameSize = Number($('#gameSize').val());
   memoriaGame.player = $('#player').val();
 
@@ -97,10 +97,15 @@ function setupGame(){
   // cartada - hand
   $('#buttonPlay').on('click', function(event) {
     alert($("#gameSize").val());
-    if (memoriaGame.playState == "paused") {
+    if (memoriaGame !== undefined && memoriaGame.playState == "paused") {
+      console.log("memoriaGame.playState: ", "paused");
       memoriaGame.start();
       $('#buttonPause').removeClass("blink");
       return;
+    }
+    else {
+      console.log("memoriaGame.playState: ", "new MemoriaGame");
+      memoriaGame = new MemoriaGame([$('#player').val()]);
     }
     gameStart();
   });

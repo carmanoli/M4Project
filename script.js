@@ -49,6 +49,18 @@ function uuidv4() {
   );
 }
 
+/*
+changed: "2022-08-08T10:32:07.928Z"
+created: "2022-08-08T10:28:58.255Z"
+game: "memoria"
+gameSize: 12
+playSate: "stopped"
+player: ['carmanoli']
+repeatedFlips: 2
+time: 188
+uuid: "600df383-7356-4f90-93cb-095bdbc2035f"
+*/
+
 function saveGameRecord(gameRecord){
   let M4G_string = localStorage.getItem("M4G");
   let M4G = [];
@@ -58,3 +70,9 @@ function saveGameRecord(gameRecord){
   M4G.push(gameRecord)
   localStorage.setItem("M4G", JSON.stringify(M4G));
 }
+
+// =====================================================================
+// resolver o problema do menu não colapsar
+$('.navbar-nav>li>a').on('click', function(){
+  $('.navbar-collapse').collapse('hide');
+});
