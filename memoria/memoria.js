@@ -123,10 +123,14 @@ function resetGame(){
 
   turnState = 0;
 
+  // para o caso de o jogo ser parado estando paused
+  $('#buttonPause').removeClass("blink");
+
   $("#memoria-setup").css("display", "");
   $("#game-grid").css("display","none");
 
   memoriaGame = new MemoriaGame([$('#player').val()]);
+
 }
 
 function gameStart() {
