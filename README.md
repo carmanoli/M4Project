@@ -1,4 +1,4 @@
-![M4G](https://github.com/carmanoli/M4Project/blob/main/M4G.png)
+![M4G](https://github.com/carmanoli/M4Project/blob/main/images/M4G.png)
 
 
 [M4G](https://carmanoli.github.io/M4Project/)
