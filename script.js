@@ -1,29 +1,37 @@
-const allIndexBtns = document.querySelectorAll('.index-btn');
-const iconImg = document.querySelector('#site-icon')
-
-for(let i = 0; i < allIndexBtns.length; i++){
-  let btnName = allIndexBtns[i];
-  console.log(btnName)
-}
-/*
+//Butons
 const galoBtn = document.querySelector('#index-galo-btn');
 const quatroBtn = document.querySelector('#index-quatro-btn');
 const memoriaBtn = document.querySelector('#index-memoria-btn');
+const historicBtn = document.querySelector('#index-historic-btn');
 
 const iconImg = document.querySelector('#site-icon')
 
 galoBtn.addEventListener('mouseenter', () =>{
   iconImg.src = "./images/galo-img.png"
 })
+galoBtn.addEventListener('mouseleave', () =>{
+  iconImg.src = "./images/M4G.png"
+})
 
 quatroBtn.addEventListener('mouseenter', () =>{
   iconImg.src = "./images/quatro-img.png"
+})
+quatroBtn.addEventListener('mouseleave', () =>{
+  iconImg.src = "./images/M4G.png"
 })
 
 memoriaBtn.addEventListener('mouseenter', () =>{
   iconImg.src = "./images/memoria-img.png"
 })
-*/
+memoriaBtn.addEventListener('mouseleave', () =>{
+  iconImg.src = "./images/M4G.png"
+})
+historicBtn.addEventListener('mouseenter', () =>{
+  iconImg.src = "./images/historico-img.png"
+})
+historicBtn.addEventListener('mouseleave', () =>{
+  iconImg.src = "./images/M4G.png"
+})
 
 let quoteData;
 
