@@ -1,5 +1,10 @@
 if (typeof window.MemoriaGame === 'undefined') {
   // as this page may be loaded again from index
+
+  // This class assumes the following:
+  // - there is an elemeent with id timer, to display the timer
+  // - 
+
   console.log("window.MemoriaGame:");
   window.MemoriaGame = class   {
 
@@ -9,7 +14,6 @@ if (typeof window.MemoriaGame === 'undefined') {
     get gameRecord() {
       console.log("this.#gameRecord: ", this.#gameRecord);
       console.log("this.player: ", this.player);
-      
      
       this.#gameRecord.gameSize = this.gameSize;
       this.#gameRecord.playSate = this._playState;
@@ -28,6 +32,7 @@ if (typeof window.MemoriaGame === 'undefined') {
       time: 0,
       created: new Date().toJSON(),
       changed: new Date().toJSON(),
+      winner: "",
       gameSize: 0
     }
 
@@ -101,7 +106,12 @@ if (typeof window.MemoriaGame === 'undefined') {
         ':' +
         (new Array(2).join('0') + seconds).slice(-2)
         ;
-      document.getElementById("timer").value = timerString;
+
+      if($("#timer").length !== 0) {
+        $("#timer").val(timerString);
+      }
+      else
+        alert("Timer not defined!");
     }
   }
 }

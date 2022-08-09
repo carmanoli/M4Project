@@ -5,56 +5,6 @@ $(document).ready(function(){
 
 var memoriaGame;
 
-function gameStart() {
-  //localStorage.removeItem('M4G');
-  console.log("memoriaGame: ", memoriaGame);
-  memoriaGame.gameSize = Number($('#gameSize').val());
-  memoriaGame.player = $('#player').val();
-
-  // memoriaGame.gameSize = 12;
-  switch (memoriaGame.gameSize) {
-    case 12:
-    case 16:
-      columns = 4;
-      break;
-    case 20:
-      columns = 5;
-      break;
-    default:
-      columns = 5;
-    }
-  rows = memoriaGame.gameSize / columns;
-
-  setGameState();
-  console.log(gameState);
-  // dealCards();
-  shuffleGameState();
-  showGrid();
-
-
-
-
-
-  // console.log(uuidv4());
-  $("#memoria-setup").css("display", "none");
-  $("#game-grid").css("display","");
-
-  if ($('#player').val().trim() === ""){
-    alert("Insert a player name, please!");
-    return;
-  }
-  
-
-  console.log("memoriaGame.payer", memoriaGame.payer);
-
-  memoriaGame.start();
-//  alert(JSON.stringify(memoriaGame.gameRecord));
-
-  $('#buttonPause').on('click', function(event) {
-    memoriaGame.pause();
-    $('#buttonPause').addClass("blink");
-  });
-}
 
 // let gameRecord;
 // read files from git
@@ -92,11 +42,22 @@ var turnState = 0; // each turn has the following sequential states:
 var flipTimeout = 1000;
 
 function setupGame(){
-  console.log(window.location.host); 
-
+  // console.log(window.location.host); 
   // cartada - hand
   $('#buttonPlay').on('click', function(event) {
-    alert($("#gameSize").val());
+    //alert($("#gameSize").val());
+
+    if ($('#player').val().trim() === ""){
+      alert("Insert a player name, please!");
+      return;
+    }
+
+    // verificar se já não esamos a meio do jogo
+    if (memoriaGame !== undefined && memoriaGame.playState == "started") {
+      return;
+    }
+
+    // Quando iniciamos o jogo existem os seguintes
     if (memoriaGame !== undefined && memoriaGame.playState == "paused") {
       console.log("memoriaGame.playState: ", "paused");
       memoriaGame.start();
@@ -109,27 +70,73 @@ function setupGame(){
     }
     gameStart();
   });
-
 }
+
+
+
+function gameStart() {
+  // localStorage.removeItem('M4G');
+  console.log("memoriaGame: ", memoriaGame);
+  memoriaGame.gameSize = Number($('#gameSize').val());
+  memoriaGame.player = $('#player').val();
+
+  // memoriaGame.gameSize = 12;
+  switch (memoriaGame.gameSize) {
+    case 12:
+    case 16:
+      columns = 4;
+      break;
+    case 20:
+      columns = 5;
+      break;
+    default:
+      columns = 5;
+    }
+  rows = memoriaGame.gameSize / columns;
+
+  setGameState();
+  console.log(gameState);
+  // dealCards();
+  shuffleGameState();
+  showGrid();
+
+  // console.log(uuidv4());
+  $("#memoria-setup").css("display", "none");
+  $("#game-grid").css("display","");
+
+
+
+  console.log("memoriaGame.payer", memoriaGame.payer);
+  memoriaGame.start();
+//  alert(JSON.stringify(memoriaGame.gameRecord));
+
+  $('#buttonPause').on('click', function(event) {
+    memoriaGame.pause();
+    $('#buttonPause').addClass("blink");
+  });
+}
+
+
+
+
+
+
+
+
 
 function getCardID(row, column){
   // given a row and a column get the id of the card
   let key = row * columns + column;
   return gameState[key].cardId;
-  // return gameState[cardHand[key]].cardId;
 }
 
 function setGameState(){
   for (let i = 0; i < memoriaGame.gameSize; i++){
-//    if (i % 2 == 0)
       gameState.push({cardId: Math.floor(i / 2), cardState: 'hidden', flipTimes: 0});
-//    else 
-//      gameState.push({cardId: Math.floor(i / 2), cardState: 'shown'});
   }
 }
 
 function showGrid() {
-
   $('#game-grid').empty();
   for (let row = 0; row < rows; row++){
     let gridRow = $(
@@ -164,7 +171,8 @@ function showGrid() {
   setClick();
 }
 
-function handleTurnEvent(card){
+function handleTurnEvent(cardId){
+  let card = gameState[cardId];
   if (card.cardState == 'shown' || turnState == 2){
     // if the user clicked on the card that is already turned we will not do anything
     // also if turnState == 2, means it is validting if there is a match
@@ -172,24 +180,14 @@ function handleTurnEvent(card){
   }
   
   card.flipTimes++;
-
   turnState++;
-  switch (turnState){
-    case 1:
-      // start of the turn
-      card.cardState = 'shown';
+  card.cardState = 'shown';
+  $(`#cardKey-${cardId}`).attr('src', `./memoria/carddeck/poker/${card.cardId}.png`);
 
-      break;
-    case 2:
-      // second card
-      // let's see if we have a match
-      card.cardState = 'shown';
-      
-      isMatch();
-
-      break;
+  if (turnState == 2) {
+    // let's see if we have a match
+    isMatch();
   }
-  showGrid();
 }
 
 function isMatch(){
@@ -199,31 +197,20 @@ function isMatch(){
 
   if (shownCards[0].cardId === shownCards[1].cardId) {
     // we have a match
-    
-
     setTimeout(setCardState, flipTimeout, "match");
     // setCardState("match");
   }
   else
   {
-    console.log("=".repeat(80));
-    console.log("flipTimeout:");
-    console.log(flipTimeout);
-    
     setTimeout(setCardState, flipTimeout, "hidden");
     //setCardState("hide");
   }
-  console.log("=".repeat(80));
-  console.log("shownCards:");
-  console.log(shownCards);
 }
 
 function setCardState(cardState){
   // set cardstate of turned cards (2) to "hidden" or "match" accordingly
-
-  console.log("=".repeat(80));
-  console.log("hideCards:");
-
+//  console.log("=".repeat(80));
+//  console.log("hideCards:");
   gameState.forEach(
     function (value, index) {
       if (gameState[index].cardState === 'shown') {
@@ -244,16 +231,12 @@ function setCardState(cardState){
   let hiddenCards = gameState.filter(card => {
     return card.cardState == 'hidden'
   })
-
   console.log("if (hiddenCards.length === 0):");
-
   if (hiddenCards.length === 0) {
     // no more cards to play we have a win
     // alert("Parabés ganhou!: " + totalSeconds);
-
     memoriaGame.stop();
     console.log("memoriaGame.stop();:");
-
     // ===================================================================
     // Save game results
     memoriaGame.gameRecord.repeatedFlips = getRepeatedFlips();
@@ -261,10 +244,8 @@ function setCardState(cardState){
     // memoriaGame.gameSize = memoriaGame.gameSize;
     memoriaGame.playSate = memoriaGame.playSate;
     memoriaGame.gameRecord.uuid = uuidv4();
-
     alert(`Parabéns terminou em ${memoriaGame.timerSeconds}!`);
     console.log("memoriaGame.gameRecord: " + JSON.stringify(memoriaGame.gameRecord));
-
     saveGameRecord(memoriaGame.gameRecord);
   }
 }
@@ -293,8 +274,8 @@ function setClick(){
       alert("Game is not started!");
       return;
     }
-
-    handleTurnEvent(gameState[event.target.id.split("-")[1]]);
+    handleTurnEvent(event.target.id.split("-")[1]);
+    //handleTurnEvent(gameState[event.target.id.split("-")[1]]);
   })
 }
 

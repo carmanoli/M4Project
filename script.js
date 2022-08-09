@@ -74,5 +74,5 @@ function saveGameRecord(gameRecord){
 // =====================================================================
 // resolver o problema do menu não colapsar
 $('.navbar-nav>li>a').on('click', function(){
-  $('.navbar-collapse').collapse('hide');
+ // $('.navbar-collapse').collapse('hide');
 });
