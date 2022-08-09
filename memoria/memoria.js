@@ -10,7 +10,9 @@ var memoriaGame;
 // https://stackoverflow.com/questions/9272535/how-to-get-a-file-via-github-apis
 
 // let cardHand; // disposition of the cards in the grid
-var columns, rows; // column star with 1, row star with zero
+
+// var columns, rows; // column star with 1, row star with zero
+
 var deckSize; 
 // var gameSize; // current game number of cards
               // must be an even number
@@ -143,15 +145,15 @@ function gameStart() {
   switch (memoriaGame.gameSize) {
     case 12:
     case 16:
-      columns = 4;
+      memoriaGame.columns = 4;
       break;
     case 20:
-      columns = 5;
+      memoriaGame.columns = 5;
       break;
     default:
       columns = 5;
     }
-  rows = memoriaGame.gameSize / columns;
+    memoriaGame.rows = memoriaGame.gameSize / memoriaGame.columns;
 
   setGameState();
   console.log(gameState);
@@ -174,7 +176,7 @@ function gameStart() {
 
 function getCardID(row, column){
   // given a row and a column get the id of the card
-  let key = row * columns + column;
+  let key = row * memoriaGame.columns + column;
   return gameState[key].cardId;
 }
 
@@ -187,7 +189,7 @@ function setGameState(){
 
 function showGrid() {
   $('#game-grid').empty();
-  for (let row = 0; row < rows; row++){
+  for (let row = 0; row < memoriaGame.rows; row++){
     let gridRow = $(
       `<div id="grid-row-1" class="grid-row">
       </div>`
@@ -195,18 +197,18 @@ function showGrid() {
     $('#game-grid').append(
       gridRow
     );
-    for (let i = 0 ; i < columns; i++){
+    for (let i = 0 ; i < memoriaGame.columns; i++){
       let htmlCard = "";
       htmlCard +=  `<div class="grid-card" >`;
-      switch (gameState[row * columns + i].cardState) {
+      switch (gameState[row * memoriaGame.columns + i].cardState) {
         case  'hidden':
-          htmlCard += `<img id='cardKey-${row * columns + i}' class="card" src="./memoria/carddeck/poker/backcard.png">`;
+          htmlCard += `<img id='cardKey-${row * memoriaGame.columns + i}' class="card" src="./memoria/carddeck/poker/backcard.png">`;
           break;
         case  'shown':
-          htmlCard += `<img id='cardKey-${row * columns + i}' class="card" src="./memoria/carddeck/poker/${getCardID(row, i)}.png">`;
+          htmlCard += `<img id='cardKey-${row * memoriaGame.columns + i}' class="card" src="./memoria/carddeck/poker/${getCardID(row, i)}.png">`;
           break;
         case  'match':
-          htmlCard += `<img id='cardKey-${row * columns + i}' class="card" style="visibility: hidden;"  src="./memoria/carddeck/poker/backcard.png">`;
+          htmlCard += `<img id='cardKey-${row * memoriaGame.columns + i}' class="card" style="visibility: hidden;"  src="./memoria/carddeck/poker/backcard.png">`;
           break;
       }
       htmlCard +=  `</div>`;

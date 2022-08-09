@@ -9,6 +9,9 @@ if (typeof window.MemoriaGame === 'undefined') {
 
     gameSize = 0;
     player = "";
+    columns = 0;
+    rows = 0;
+
 
     get gameRecord() {
       console.log("this.#gameRecord: ", this.#gameRecord);

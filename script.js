@@ -37,10 +37,6 @@ let quoteData;
 
 $(document).ready(() => {
   getQuoteData();
-
-
-
-  
 })
 
 function loadPage(htmlPage) {
@@ -70,10 +66,7 @@ function getQuoteData(){
 
     // we have to reset marquee animation
     //$('#scroll-text').stop(true, true);
-
-  })
-  
-  ;
+  });
 }
 
 // =====================================================================
@@ -107,7 +100,4 @@ function saveGameRecord(gameRecord){
 }
 
 // =====================================================================
-// resolver o problema do menu não colapsar
-$('.navbar-nav>li>a').on('click', function(){
- // $('.navbar-collapse').collapse('hide');
-});
+
