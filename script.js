@@ -99,6 +99,21 @@ time: 188
 uuid: "600df383-7356-4f90-93cb-095bdbc2035f"
 */
 
+function uniqueValues(value, index, self) {
+  return self.indexOf(value) === index;
+}
+
+async function playerNames() {
+  // returnan array of unique names
+  console.log("playerNames()");
+  let M4G_string = localStorage.getItem("M4G");
+  M4G_json = JSON.parse(M4G_string);
+  playersNames = [].concat.apply([], M4G_json.map(game => game.player)).filter(uniqueValues);
+  console.log(JSON.stringify(playersNames));
+  return playersNames;
+}
+
+
 function saveGameRecord(gameRecord){
   let M4G_string = localStorage.getItem("M4G");
   let M4G = [];

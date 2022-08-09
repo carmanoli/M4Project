@@ -7,6 +7,7 @@ $(document).ready(function(){
   }
 })
 
+
 function showHistory(M4G_json) {
   M4G_json.forEach(function(gameRecord){
     let historyItem = "";

@@ -49,6 +49,33 @@ function setupGame(){
   // cartada - hand
   console.log("setupGame()");
 
+  // popular o select com os nomes já existentes
+  playerNames()
+  .then((playerNames) => {
+      // adicionar elementos ao select
+      $('#select-player').empty();
+
+      $('#select-player').append($('<option>', {
+        value: 0,
+        text: 'Select an existing user'
+      }));
+      console.log("setupGame");
+      console.log( $("#select-player option[value=0]").text());
+      $("#select-player option[value=0]").attr('disabled', true)
+      $("#select-player option[value=0]").attr('selected', true)
+
+      // <option value="0" disabled selected>Select an existing user</option>
+
+      for (var i = 0; i < playerNames.length; i++) {
+        var option = document.createElement("option");
+        option.value = i + 1;
+        option.text = playerNames[i];
+        $('#select-player').append(option);
+      }
+  })
+  
+
+
   $('#buttonPlay').on('click', function(event) {
     //alert($("#gameSize").val());
 
@@ -77,7 +104,7 @@ function setupGame(){
     }
     else 
     if(Number($('#select-player').find(":selected").val() > 0)){
-      // senão temos um novo user, verificar se fopi selecionado um jogador existente
+      // senão temos um novo user, verificar se foi selecionado um jogador existente
       $('#player').val($('#select-player').find(":selected").text());
 
       // lets reset selection
