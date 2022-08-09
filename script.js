@@ -1,3 +1,6 @@
+//Ligth/Dark theme
+const checkbox = document.querySelector('#checkbox');
+
 //Butons
 const galoBtn = document.querySelector('#index-galo-btn');
 const quatroBtn = document.querySelector('#index-quatro-btn');
@@ -6,6 +9,13 @@ const historicBtn = document.querySelector('#index-historic-btn');
 
 const iconImg = document.querySelector('#site-icon')
 
+
+//Ligth/Dark Function
+checkbox.addEventListener('change', () =>{
+  document.body.classList.toggle('dark')
+})
+
+//Buttons Events
 galoBtn.addEventListener('mouseenter', () =>{
   iconImg.src = "./images/galo-img.png"
 })
