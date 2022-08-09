@@ -14,7 +14,40 @@
   border-radius: 50%;
   margin: auto;
   margin-top: 30px;
+  margin-bottom: 30px;
   border: 1px solid black;
+}
+
+.games-btns{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.games-btns input{
+  margin-top: 10px;
+}
+
+.index-btn{
+  width: 250px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 20px;
+  border: 1px solid lightgray;
+}
+.index-btn:hover{
+  background-color: lightgray;
+}
+.index-btn:active{
+  background-color: rgb(124, 124, 124);
+}
+
+.historic{
+  text-align: center;
+}
+
+.historic input{
+  margin-top: 40px;
 }
 
 /* Marqueee */
