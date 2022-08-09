@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Memória</title>
@@ -7,7 +8,7 @@
   <link rel="stylesheet" href="./memoria/memoria.css">
   <link rel="stylesheet" href="style.css">
   <script src="./memoria/memoria-game.js"></script>
-  
+
   <script src="./memoria/memoria.js"></script>
 </head>
 
@@ -16,23 +17,25 @@
     <div class="row mt-3">
 
       <div class="col-12 col-lg-4 d-flex justify-content-center">
-          <div class="form-floating ">
-              <input id="player" type="text" class="form-control-lg text-center">
-              <label for="player">Player</label>
-          </div>
-      </div>
-
-      <div class="col-12 col-lg-4 d-flex justify-content-center ps-3 pe-3">
-        <input readonly class="form-control-lg text-center" id="timer" type="text" value="00:00" >
-      </div>
-
-      <div class="col-12 col-lg-4 d-flex justify-content-center">
-        <div class="form-floating" >
-            <input id="current-player" type="text" class="form-control-lg text-center">
-            <label for="player">Current player</label>
+        <div class="form-floating  ">
+          <input id="player" type="text"
+            class="form-control-lg text-center border border-danger rounded-pill border-5 ">
+          <label for="player">Player</label>
         </div>
       </div>
 
+      <div class="col-12 col-lg-4 d-flex justify-content-center ps-3 pe-3">
+        <input readonly class="form-control-lg text-center border border-danger rounded-pill border-5" id="timer"
+          type="text" value="00:00">
+      </div>
+
+      <div class="col-12 col-lg-4 d-flex justify-content-center">
+        <div class="form-floating">
+          <input readonly id="current-player" type="text"
+            class="form-control-lg text-center border border-danger rounded-pill border-5">
+          <label for="player">Current player</label>
+        </div>
+      </div>
 
     </div>
 
@@ -40,9 +43,9 @@
       <div class="col-4">
       </div>
       <div class="col-4 d-flex justify-content-center">
-        <button id="buttonPlay"  type="button" class="btn btn-danger">Play</button>
+        <button id="buttonPlay" type="button" class="btn btn-danger">Play</button>
         <button id="buttonPause" type="button" class="btn btn-secondary ms-1 me-1">Pause</button>
-        <button id="buttonStop"  type="button" class="btn btn-dark">Stop</button>
+        <button id="buttonStop" type="button" class="btn btn-dark">Stop</button>
       </div>
       <div class="col-4">
       </div>
@@ -51,11 +54,42 @@
   </div>
 
   <div id="memoria-setup">
-    <div class="row mt-5 ">
-      <div class="col-4">
-      </div>
-      <div class="col-4 border border-primary p-3">
 
+    <div class="row mt-5 ">
+      <div class="col-1">
+      </div>
+      <div class="col-10  p-3 ps-5 pe-5 border border-danger rounded-pill border-5">
+        <label for="new-player" class="form-label">New player:</label>
+        <div>
+          <input type="text" class="form-control form-control-lg" id="new-player">
+        </div>
+      </div>
+      <div class="col-1">
+      </div>
+    </div>
+
+    <div class="row mt-5 ">
+      <div class="col-1">
+      </div>
+      <div class="col-10  p-3 ps-5 pe-5 border border-danger rounded-pill border-5">
+        <label class="form-check-label" for="gameSize">
+          Existing Player:
+        </label>
+        <select id="select-player" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+          <option value="0" disabled selected>Select an existing user</option>
+          <option value="1">carmanoli</option>
+          <option value="2">Oliveira</option>
+          <option value="3">Carlos</option>
+        </select>
+      </div>
+      <div class="col-1">
+      </div>
+    </div>
+
+    <div class="row mt-5 ">
+      <div class="col-1">
+      </div>
+      <div class="col-10  p-3 ps-5 pe-5 border border-danger rounded-pill border-5">
         <label class="form-check-label" for="gameSize">
           Nível de dificuldade:
         </label>
@@ -64,10 +98,9 @@
           <option value="16">Matriz 4x4</option>
           <option value="20">Matriz 5x4</option>
         </select>
-
       </div>
-      <div class="col-4">
-      </div>
+    </div>
+    <div class="col-1">
     </div>
   </div>
 
@@ -81,4 +114,5 @@
   </div>
 
 </body>
+
 </html>

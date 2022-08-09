@@ -2,10 +2,6 @@ let quoteData;
 
 $(document).ready(() => {
   getQuoteData();
-
-
-
-  
 })
 
 function loadPage(htmlPage) {

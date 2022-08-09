@@ -5,7 +5,6 @@ $(document).ready(function(){
 
 var memoriaGame;
 
-
 // let gameRecord;
 // read files from git
 // https://stackoverflow.com/questions/9272535/how-to-get-a-file-via-github-apis
@@ -41,44 +40,100 @@ var turnState = 0; // each turn has the following sequential states:
 
 var flipTimeout = 1000;
 
+
+
 function setupGame(){
   // console.log(window.location.host); 
   // cartada - hand
+  console.log("setupGame()");
+
   $('#buttonPlay').on('click', function(event) {
     //alert($("#gameSize").val());
 
-    if ($('#player').val().trim() === ""){
-      alert("Insert a player name, please!");
-      return;
-    }
+
 
     // verificar se já não esamos a meio do jogo
     if (memoriaGame !== undefined && memoriaGame.playState == "started") {
       return;
     }
 
-    // Quando iniciamos o jogo existem os seguintes
+    // verificar se não estamos pausados
     if (memoriaGame !== undefined && memoriaGame.playState == "paused") {
       console.log("memoriaGame.playState: ", "paused");
       memoriaGame.start();
       $('#buttonPause').removeClass("blink");
       return;
     }
-    else {
-      console.log("memoriaGame.playState: ", "new MemoriaGame");
-      memoriaGame = new MemoriaGame([$('#player').val()]);
+    
+    console.log("Selected user");
+    console.log($('#select-player').find(":selected").val());
+    console.log($('#select-player').find(":selected").text());
+
+    if ($('#new-player').val().trim() != ""){
+      // verificar se temos um novo user
+      $('#player').val($('#new-player').val().trim());
     }
+    else 
+    if(Number($('#select-player').find(":selected").val() > 0)){
+      // senão temos um novo user, verificar se fopi selecionado um jogador existente
+      $('#player').val($('#select-player').find(":selected").text());
+
+      // lets reset selection
+      $('#select-player')[0].selected = true;
+    }
+
+    if ($('#player').val().trim() === ""){
+      alert("Insert a player name, please!");
+      return;
+    }
+
+    memoriaGame = new MemoriaGame([$('#player').val()]);
     gameStart();
   });
+
+
+  $('#buttonStop').on('click', function(event) {
+ 
+    if (memoriaGame !== undefined && 
+      (memoriaGame.playState == "started" ||
+      memoriaGame.playState == "paused"
+      )
+      ) {
+      if (confirm('You will loose current game status! Are you sure?')) {
+        
+        console.log('Game stopped by user.');
+      } else {
+        // Do nothing!
+        return;
+      }
+    }
+
+    memoriaGame.stop();
+    resetGame();
+  });
+
 }
 
+function resetGame(){
+  // this function is usual call when we already played one time
+  // and the player is defined 
+  //if (memoriaGame !== undefined ) {
+  //  console.log("memoriaGame.playState: ", memoriaGame.playState);
+  //}
 
+  turnState = 0;
+
+  $("#memoria-setup").css("display", "");
+  $("#game-grid").css("display","none");
+
+  memoriaGame = new MemoriaGame([$('#player').val()]);
+}
 
 function gameStart() {
-  // localStorage.removeItem('M4G');
+
   console.log("memoriaGame: ", memoriaGame);
   memoriaGame.gameSize = Number($('#gameSize').val());
-  memoriaGame.player = $('#player').val();
+  // memoriaGame.player = $('#player').val();
 
   // memoriaGame.gameSize = 12;
   switch (memoriaGame.gameSize) {
@@ -100,11 +155,8 @@ function gameStart() {
   shuffleGameState();
   showGrid();
 
-  // console.log(uuidv4());
   $("#memoria-setup").css("display", "none");
   $("#game-grid").css("display","");
-
-
 
   console.log("memoriaGame.payer", memoriaGame.payer);
   memoriaGame.start();
@@ -116,14 +168,6 @@ function gameStart() {
   });
 }
 
-
-
-
-
-
-
-
-
 function getCardID(row, column){
   // given a row and a column get the id of the card
   let key = row * columns + column;
@@ -131,6 +175,7 @@ function getCardID(row, column){
 }
 
 function setGameState(){
+  gameState = [];
   for (let i = 0; i < memoriaGame.gameSize; i++){
       gameState.push({cardId: Math.floor(i / 2), cardState: 'hidden', flipTimes: 0});
   }
@@ -240,13 +285,16 @@ function setCardState(cardState){
     // ===================================================================
     // Save game results
     memoriaGame.gameRecord.repeatedFlips = getRepeatedFlips();
-    memoriaGame.gameRecord.time = memoriaGame.timerSeconds;
+
     // memoriaGame.gameSize = memoriaGame.gameSize;
     memoriaGame.playSate = memoriaGame.playSate;
     memoriaGame.gameRecord.uuid = uuidv4();
-    alert(`Parabéns terminou em ${memoriaGame.timerSeconds}!`);
+    alert(`Parabéns terminou em ${memoriaGame.timerSeconds} segundos!`);
     console.log("memoriaGame.gameRecord: " + JSON.stringify(memoriaGame.gameRecord));
     saveGameRecord(memoriaGame.gameRecord);
+
+    // Preparar para novo jogo
+    resetGame();
   }
 }
 
