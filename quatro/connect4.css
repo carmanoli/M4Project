@@ -205,15 +205,40 @@ a{
 .player1-color .border-play{
     background: var(--color-player-1);
 }
-.player1-move-color{
+.player1-move-color, .player1-move-anim-bg {
     background: var(--color-player-1-move);
 }
 
 .player2-color .border-play{
     background: var(--color-player-2);
 }
-.player2-move-color{
+.player2-move-color, .player2-move-anim-bg {
     background: var(--color-player-2-move);
+}
+
+.player1-move-anim0, .player2-move-anim0{
+    transition: transform 1s linear;
+    transform: translateY(495px);
+}
+.player1-move-anim1, .player2-move-anim1{
+    transition: transform 0.85s linear;
+    transform: translateY(415px);
+}
+.player1-move-anim2, .player2-move-anim2{
+    transition: transform 0.70s linear;
+    transform: translateY(335px);
+}
+.player1-move-anim3, .player2-move-anim3{
+    transition: transform 0.55s linear;
+    transform: translateY(255px);
+}
+.player1-move-anim4, .player2-move-anim4{
+    transition: transform 0.40s linear;
+    transform: translateY(175px);
+}
+.player1-move-anim5, .player2-move-anim5{
+    transition: transform 0.25s linear;
+    transform: translateY(95px);
 }
 
 /*========== Result Style ==========*/
@@ -253,7 +278,7 @@ a{
 .options-after-game input{
     width: 175px;
     padding: 5px;
-    margin: 5px 7px 0px 7px;
+    margin: 5px 7px -3px 7px;
     background-color: white;
     border: 1px solid var(--btn-background-color-hover);
     border-radius: 20px;

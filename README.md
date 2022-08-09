@@ -39,7 +39,5 @@ O vocabulário, representa uma série de conceitos com que a aplicação tem que
 ---
 ### Jogo Do 4 Em Linha
 <ul>
-  <li> Animação da bolinha a cair </li>
-  <li> Sortear qual o jogador que vai começar </li>
-   <li> Criar uma variavel para receber o vencedor e mostrar ao acabaar o jogo </li>
+  <li></li>
 </ul>

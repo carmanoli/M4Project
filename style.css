@@ -7,6 +7,16 @@
 }
 
 /* ============================================= */
+
+#site-icon{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: auto;
+  margin-top: 30px;
+  border: 1px solid black;
+}
+
 /* Marqueee */
 #scroll-container {
   overflow: hidden;
