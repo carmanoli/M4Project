@@ -7,18 +7,20 @@ const winnerResultEl = document.querySelector('#winner-result');
 const winnerColorEl = document.querySelector('#winner-color');
 let winner = null;
 
+//Criar uma variavel para detetar a current colum e comparar no mouse enter e leave para apenas trocar as bolinhas depois
 
 let contador = cells.length;
 //Game Logic \\\\ Changing the game status
 const clickCell = (idValue) =>{
     let column_num = parseInt(idValue.split('_')[1]);
     let countNotTaken = 6 - $("#column-"+(column_num+1)).find(".not-taken").length;
+    if(!isPLaying){
+        return
+    }
+    isPLaying = false;
     setTimeout(() =>{
 
-        if(!isPLaying){
-            return
-        }
-    
+        isPLaying = true;
         //Check last cell available
         for(i = 5; i >= 0; i--){
             let idElement = i + '_' + column_num;
@@ -97,10 +99,13 @@ playGame = () => {
         })
         //Reset color without leave mouse
         column.addEventListener('click', () =>{
+            if(!isPLayingAnim) return;
+            isPLayingAnim = false;
             let countNotTaken = 6 - $(column).find(".not-taken").length;
             
             //Animation
             setTimeout(() =>{
+                isPLayingAnim = true;
                 removeAnim = () =>{
                     for(let i = 0; i <= 5; i++){
                         headerCells[idx].classList.remove(`player1-move-anim${i}`)

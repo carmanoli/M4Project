@@ -4,6 +4,7 @@ const player1El = document.querySelector('#player-one');
 const player2El = document.querySelector('#player-two');
 
 let isPLaying = false;
+let isPLayingAnim = false;
 let seconds, minutes, currentPLayer;
 
 //Inicialize Game
@@ -41,6 +42,7 @@ const init = () =>{
     //Start Game
     gameOverDisplayEl.classList.add('hidden');
     isPLaying = true;
+    isPLayingAnim = true;
     winner = null
     contador = cells.length;
 
