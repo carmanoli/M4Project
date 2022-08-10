@@ -99,7 +99,7 @@ playGame = () => {
 
         column.addEventListener('mouseenter', ()=>{
             currentColumn = idx;
-             headerCells[idx].classList.add(`player${currentPLayer}-move-color`);
+            headerCells[idx].classList.add(`player${currentPLayer}-move-color`);
         })
         //Reset color
         column.addEventListener('mouseleave', ()=>{
