@@ -9,23 +9,28 @@
     --background-color: white(252, 191, 59);
     --btn-background-color-hover: rgb(196, 194, 194);
     --btn-background-color-active: rgb(124, 124, 124);
+    --text-color: rgb(0, 0, 0);
+    --border-color: rgb(0, 0, 0);
 }
 
 body.dark {
-    --color-player-1: rgb(58, 84, 231);
-    --color-player-2: rgb(24, 224, 24);
+    --color-player-1: rgb(230, 34, 34);
+    --color-player-2: rgb(228, 228, 34);
     --color-player-1-move: rgba(204, 58, 58, 0.637);
     --color-player-2-move: rgba(228, 228, 34, 0.493);
     --color-active-player: greenyellow;
-    --color-waitting-player: lightgrey;
-    --background-color: white(252, 191, 59);
+    --color-waitting-player: rgba(211, 211, 211, 0.253);
+    --background-color: #2f363e;
     --btn-background-color-hover: rgb(196, 194, 194);
     --btn-background-color-active: rgb(124, 124, 124);
+    --text-color: #fff;
+    --border-color: #fff;
 }
 
 body h1{
     text-align: center;
     padding: 20px;
+    color: var(--text-color);
 }
 
 /*========== Start Display Style ==========*/
@@ -33,6 +38,7 @@ body h1{
     text-align: center;
     margin: auto;
     padding: 7%;
+    color: var(--text-color);
 }
 
 a{
@@ -83,6 +89,7 @@ a{
     background-color: var(--background-color);
     border: 1px solid var(--btn-background-color-hover);
     border-radius: 20px;
+    color: var(--text-color);
 }
 .options-before-game input:hover{
     background-color: var(--btn-background-color-hover);
@@ -95,6 +102,7 @@ a{
 
 .rules-display{
     text-align: center;
+    color: var(--text-color);
 }
 
 #back-btn{
@@ -135,6 +143,7 @@ a{
 /*========== Game Style ==========*/
 .game-conteiner{
     margin-top: 50px;
+    color: var(--text-color);
 }
 
 /* Player Info */
@@ -176,7 +185,7 @@ a{
     margin: auto;
     border-radius: 50%;
     text-align: center;
-    background-color: white;
+    background-color: var(--background-color);
 }
 
 .board{
@@ -266,7 +275,7 @@ a{
 }
 
 #winner-result{
-    margin-top: 10%;
+    margin-top: 5%;
     margin-bottom: 5px;
     padding-bottom: 10px;
 }
@@ -285,7 +294,7 @@ a{
 }
 
 .options-after-game{
-    margin-top: 2%;
+    margin-bottom: 2%;
 }
 .options-after-game input{
     width: 175px;
