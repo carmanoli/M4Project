@@ -3,10 +3,6 @@ $(document).ready(function(){
   setupGame();
 
 
-
-  
-
-
 });
 
 var memoriaGame;
@@ -20,13 +16,22 @@ function setupGame(){
 
   if (memoriaGame !== undefined) {
     console.log("memoriaGame.playState()", memoriaGame.playState);
+    memoriaGame.stop();
   }
+
+  $('#select-deck input').on('change', function() {
+    // alert($('input[name=option-deck]:checked', '#select-deck').val());
+  });
 
   // popular o select com os nomes já existentes
   playerNames()
   .then((playerNames) => {
       // adicionar elementos ao select
       $('#select-player').empty();
+
+      if (!playerNames){
+        return
+      }
 
       $('#select-player').append($('<option>', {
         value: 0,
@@ -86,11 +91,12 @@ function setupGame(){
     }
 
     memoriaGame = new MemoriaGame([$('#player').val()]);
+    memoriaGame.carddeck = $('input[name=option-deck]:checked', '#select-deck').val();
+
     gameStart();
   });
 
   $('#buttonStop').on('click', function(event) {
- 
     if (memoriaGame !== undefined && 
       (memoriaGame.playState == "started" ||
       memoriaGame.playState == "paused"
@@ -104,7 +110,6 @@ function setupGame(){
         return;
       }
     }
-
     memoriaGame.stop();
     resetGame();
   });
@@ -228,7 +233,37 @@ function handleTurnEvent(cardId){
   card.flipTimes++;
   memoriaGame.turnState++;
   card.cardState = 'shown';
-  $(`#cardKey-${cardId}`).attr('src', `./memoria/carddeck/${memoriaGame.carddeck}/${card.cardId}.png`);
+  
+  
+
+
+  let cardWidth = $(`#cardKey-${cardId}`).width();
+  $(`#cardKey-${cardId}`).animate(
+    {
+      left: '+=' + $(`#cardKey-${cardId}`).width() / 2,
+      width: 0,
+      height: $(`#cardKey-${cardId}`).height()
+    }, 
+    300,
+    function() {
+      $(`#cardKey-${cardId}`).attr('src', `./memoria/carddeck/${memoriaGame.carddeck}/${card.cardId}.png`);
+      $(`#cardKey-${cardId}`).animate(
+        {
+          left: '-=' + cardWidth / 2,
+          width: cardWidth,
+          height: $(`#cardKey-${cardId}`).height()
+        }, 
+        300)
+    }
+    );
+
+
+//  $(`#cardKey-${cardId}`).attr('src', `./memoria/carddeck/${memoriaGame.carddeck}/${card.cardId}.png`);
+
+
+
+
+
 
   if (memoriaGame.turnState == 2) {
     // let's see if we have a match
@@ -266,7 +301,14 @@ memoriaGame.gameState.forEach(
             $(`#cardKey-${index}`).attr('src', `./memoria/carddeck/${memoriaGame.carddeck}/backcard.png`);
             break;
           case  'match': 
-            $(`#cardKey-${index}`).attr('style', "visibility: hidden;");
+            $(`#cardKey-${index}`).css('z-index', 1).animate(
+              {
+                top: window.scrollY + window.innerHeight
+              }, 
+              1000, function() {
+                $(`#cardKey-${index}`).attr('style', "visibility: hidden;");
+              }
+            );
             break;        
           }
         }

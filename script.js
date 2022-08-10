@@ -9,7 +9,6 @@ const historicBtn = document.querySelector('#index-historic-btn');
 
 const iconImg = document.querySelector('#site-icon')
 
-
 //Ligth/Dark Function
 checkbox.addEventListener('change', () =>{
   document.body.classList.toggle('dark')
@@ -107,12 +106,17 @@ async function playerNames() {
   // returnan array of unique names
   console.log("playerNames()");
   let M4G_string = localStorage.getItem("M4G");
+  if (!M4G_string){
+    return null;
+  }
   M4G_json = JSON.parse(M4G_string);
+  console.log("M4G_string", M4G_string);
+
   playersNames = [].concat.apply([], M4G_json.map(game => game.player)).filter(uniqueValues);
+
   console.log(JSON.stringify(playersNames));
   return playersNames;
 }
-
 
 function saveGameRecord(gameRecord){
   let M4G_string = localStorage.getItem("M4G");
@@ -125,4 +129,3 @@ function saveGameRecord(gameRecord){
 }
 
 // =====================================================================
-
