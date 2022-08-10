@@ -99,9 +99,68 @@
           <option value="20">Matriz 5x4</option>
         </select>
       </div>
+      <div class="col-1">
+      </div>
     </div>
-    <div class="col-1">
+
+    <!-- http://jsfiddle.net/huanlin/mgvrc/ -->
+    <style>
+      /* HIDE RADIO */
+      [type=radio] { 
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      /* IMAGE STYLES */
+      [type=radio] + img {
+        cursor: pointer;
+      }
+
+      /* CHECKED STYLES */
+      [type=radio]:checked + img {
+        outline: 2px solid #f00;
+      }
+    </style>
+
+
+    <div class="row mt-5">
+      <div class="col-1">
+      </div>
+      <div class="col-10  ">
+
+
+
+        <div class="row mt-5 border border-danger rounded-pill border-5">
+          <div class="col-1">
+          </div>
+          <div class="col-4 text-center">
+            <label class="text-center">
+              <input type="radio" name="test" value="small" checked>
+              <img src="./memoria/carddeck/ldr/backcard.png" style="height:100px" alt="ldr">
+            </label>
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-4 text-center">
+            <label class="justify-content-center">
+              <input type="radio" name="test" value="big">
+              <img src="./memoria/carddeck/poker/backcard.png" style="height:100px" alt="poker">
+            </label>
+          </div>
+          <div class="col-1">
+          </div>
+        </div>
+    
+
+      </div>
+      <div class="col-1">
+      </div>
     </div>
+
+
+
   </div>
 
   <div style="display: none" id="game-grid" class="grid mt-5">

@@ -1,6 +1,12 @@
 //window.onload = createGame;
 $(document).ready(function(){
   setupGame();
+
+
+
+  
+
+
 });
 
 var memoriaGame;

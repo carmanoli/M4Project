@@ -7,23 +7,21 @@ if (typeof window.MemoriaGame === 'undefined') {
   console.log("window.MemoriaGame:");
   window.MemoriaGame = class   {
 
-    gameSize = 0;     // current game number of cards
-                      // must be an even number
-                      // will use ((gameSize / 2) * number) of cards
-                      // from the deckSize
+    gameSize = 0;       // current game number of cards
+                        // must be an even number
+                        // will use ((gameSize / 2) * number) of cards
+                        // from the deckSize
     player = "";
     columns = 0;
     rows = 0;
     carddeck = "ldr";
-    turnState = 0;    // each turn has the following sequential states: 
-                      // 0 - none - no card has been turned
-                      // 1 - one card has been flipped
-                      // 2 - two cards had been flipped - we have to trigger validations:
+    turnState = 0;      // each turn has the following sequential states: 
+                        // 0 - none - no card has been turned
+                        // 1 - one card has been flipped
+                        // 2 - two cards had been flipped - we have to trigger validations:
     flipTimeout = 1000; // flipTimes // number of times the card has been shown/views
     gameState = [];
     // cardState: [hidden, shown, match]
-
-
 
     get gameRecord() {
       console.log("this.#gameRecord: ", this.#gameRecord);
