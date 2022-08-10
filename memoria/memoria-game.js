@@ -11,7 +11,7 @@ if (typeof window.MemoriaGame === 'undefined') {
     player = "";
     columns = 0;
     rows = 0;
-
+    carddeck = "ldr";
 
     get gameRecord() {
       console.log("this.#gameRecord: ", this.#gameRecord);
@@ -20,7 +20,8 @@ if (typeof window.MemoriaGame === 'undefined') {
       this.#gameRecord.gameSize = this.gameSize;
       this.#gameRecord.playSate = this._playState;
       this.#gameRecord.time = this.timerSeconds;
-      this.#gameRecord.changed = new Date().toJSON(),
+      this.#gameRecord.changed = new Date().toJSON();
+      this.#gameRecord.carddeck = this.carddeck;
       console.log("this.#gameRecord: ", this.#gameRecord);
       return this.#gameRecord;
     }
@@ -35,7 +36,8 @@ if (typeof window.MemoriaGame === 'undefined') {
       created: new Date().toJSON(),
       changed: new Date().toJSON(),
       winner: "",
-      gameSize: 0
+      gameSize: 0,
+      carddeck: this.carddeck
     }
 
     constructor (players) {
