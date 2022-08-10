@@ -55,6 +55,7 @@ const clickCell = (idValue) =>{
     
                 //End Game
                 if(winner != null){
+                    gameEnded = true
                     isPLaying = false
                     gameOverDisplayEl.classList.remove('hidden')
                     

@@ -3,7 +3,7 @@ const finalTimerEl = document.querySelector('#game-time');
 //Timmer
 countTimer = () =>{
     setInterval(() =>{ 
-        if(!isPLaying) return
+        if(gameEnded) return
         seconds++;
         if(seconds >= 60){
             seconds = 0
