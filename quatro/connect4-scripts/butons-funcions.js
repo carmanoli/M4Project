@@ -15,9 +15,11 @@ const viewBoardBtn = document.querySelector('#last-play-btn')
 startGameBtn.addEventListener('click',() =>{
     //Check if inputs have names
     if(player1.value != '' && player2.value != ''){
+        const todayHours = Date().split(' ')[4]
         countTimer()
         init();
         playGame();
+        gameRecord.created = todayHours;
     }else{
         alert('Missing player name!')
     }

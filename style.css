@@ -18,7 +18,7 @@
 }
 
 .label{
-  background-color: aqua;
+  background-color: rgba(255, 255, 255, 0.603);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,7 +29,7 @@
 }
 
 .ball{
-background-color: #fff;
+background-color: yellow;
 border-radius: 50%;
 position: absolute;
 top: 2px;
@@ -41,18 +41,11 @@ transition: transform 0.2s linear;
 
 .checkbox:checked + .label .ball{
   transform: translateX(24px);
+  background-color: var(--dark-theme-background);
 }
 
 body.dark{
   background-color: var(--dark-theme-background);
-}
-
-.fa-moon{
-  color: #f1c40f;
-}
-
-.fa-sun{
-  color: #f39c12;
 }
 
 /* ============================================= */
@@ -65,6 +58,7 @@ body.dark{
   margin-top: 30px;
   margin-bottom: 30px;
   border: 1px  solid black;
+  padding: 0;
 }
 
 .games-btns{
@@ -75,6 +69,7 @@ body.dark{
 
 .games-btns input{
   margin-top: 10px;
+  position: relative;
 }
 
 .index-btn{
@@ -116,4 +111,8 @@ body.dark{
   to {
     transform: translateX(-50%);
   }
+}
+
+.footer {
+  position: relative;
 }

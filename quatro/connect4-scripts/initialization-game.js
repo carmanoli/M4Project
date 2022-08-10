@@ -6,9 +6,14 @@ const player2El = document.querySelector('#player-two');
 let isPLaying = false;
 let isPLayingAnim = false;
 let seconds, minutes, currentPLayer;
+let gameEnded = true
 
 //Inicialize Game
 const init = () =>{
+    gameRecord.uuid = uuidv4();
+   //Adicionar a data
+
+   
     startingDisplayEl.classList.add('hidden');
     overallGameDisplay.classList.remove('hidden');
 
@@ -45,6 +50,7 @@ const init = () =>{
     isPLayingAnim = true;
     winner = null
     contador = cells.length;
+    gameEnded = false
 
     //Reset Timer
     clearInterval(countTimer)
