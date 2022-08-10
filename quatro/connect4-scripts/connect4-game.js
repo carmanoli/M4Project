@@ -68,15 +68,22 @@ const clickCell = (idValue) =>{
                         player2El.classList.add('player-active')
                         winnerColorEl.style.background = 'yellow';
                         winnerResultEl.innerHTML = player2.value + ' Won';
+                        gameRecord.winner = player2.value
                     }else if(currentPLayer === 2){
                         player1El.classList.add('player-active')
                         winnerColorEl.style.background = 'red';
                         winnerResultEl.innerHTML = player1.value + ' Won';
+                        gameRecord.winner = player1.value
                     }else{
                         winnerColorEl.style.background = 'orange';
                         winnerResultEl.innerHTML = "It's a Draw";
                     }
+                    gameRecord.player = [player1.value, player2.value];
+                    gameRecord.time = timerEl.innerHTML;
+                    saveGameRecord(gameRecord);
+
                 }
+
                 return
             }
         }
@@ -90,10 +97,12 @@ playGame = () => {
     columns.each((idx, column) =>{
 
         column.addEventListener('mouseenter', ()=>{
+            currentColumn = idx;
              headerCells[idx].classList.add(`player${currentPLayer}-move-color`);
         })
         //Reset color
         column.addEventListener('mouseleave', ()=>{
+            currentColumn = -1;
             headerCells[idx].classList.remove('player1-move-color');
             headerCells[idx].classList.remove('player2-move-color');
         })
@@ -121,7 +130,11 @@ playGame = () => {
             headerCells[idx].classList.remove(`player${currentPLayer}-move-color`);
             //Change the color in HeaderCell when ball fall
             setTimeout(()=>{
-                headerCells[idx].classList.add(`player${currentPLayer}-move-color`);
+                if(currentColumn >= 0){
+                    headerCells[currentColumn].classList.remove(`player1-move-color`);
+                    headerCells[currentColumn].classList.remove(`player2-move-color`);
+                    headerCells[currentColumn].classList.add(`player${currentPLayer}-move-color`);
+                }
             },1000 - (150 * countNotTaken))
             
             headerCells[idx].classList.add(`player${currentPLayer}-move-anim${countNotTaken}`)

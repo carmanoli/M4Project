@@ -11,9 +11,21 @@
     --btn-background-color-active: rgb(124, 124, 124);
 }
 
+body.dark {
+    --color-player-1: rgb(58, 84, 231);
+    --color-player-2: rgb(24, 224, 24);
+    --color-player-1-move: rgba(204, 58, 58, 0.637);
+    --color-player-2-move: rgba(228, 228, 34, 0.493);
+    --color-active-player: greenyellow;
+    --color-waitting-player: lightgrey;
+    --background-color: white(252, 191, 59);
+    --btn-background-color-hover: rgb(196, 194, 194);
+    --btn-background-color-active: rgb(124, 124, 124);
+}
+
 body h1{
     text-align: center;
-    margin-top: 10PX;
+    padding: 20px;
 }
 
 /*========== Start Display Style ==========*/

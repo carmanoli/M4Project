@@ -9,6 +9,10 @@ let seconds, minutes, currentPLayer;
 
 //Inicialize Game
 const init = () =>{
+    gameRecord.uuid = uuidv4();
+   //Adicionar a data
+
+   
     startingDisplayEl.classList.add('hidden');
     overallGameDisplay.classList.remove('hidden');
 
