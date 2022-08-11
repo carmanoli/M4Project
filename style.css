@@ -6,9 +6,9 @@
 }
 
 *{
-    font-family: 'Poppins', sans-serif;
-    box-sizing: border-box;
-    margin: 0;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 /*======= Ligth/Dark theme*/
@@ -48,7 +48,7 @@ body.dark{
   background-color: var(--dark-theme-background);
 }
 
-/* ============================================= */
+/* ======== Home page ======= */
 
 #site-icon{
   width: 200px;
@@ -94,7 +94,7 @@ body.dark{
   margin-top: 40px;
 }
 
-/* Marqueee */
+/* ======= Marqueee =======*/
 #scroll-container {
   overflow: hidden;
 }

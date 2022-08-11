@@ -12,8 +12,9 @@ function showHistory(M4G_json) {
   M4G_json.forEach(function(gameRecord){
     let historyItem = "";
     historyItem += `
-      <div class="border rounded-pill`;
+      <div class="border rounded-pill historic-colors`;
 
+      //Border Color
     switch (gameRecord.game) {
       case "memoria":
         historyItem += ` border-danger `;
@@ -24,48 +25,37 @@ function showHistory(M4G_json) {
       case "galo":
         historyItem += ` border-primary `;
         break;
-        } 
+    } 
 
+    //Common information
     historyItem += `
       border-5 mt-3 p-3 ps-5">
       <div>
         Jogo: ${gameRecord.game}
       </div>
       <div>       
-      Data: ${gameRecord.created}
+        Data: ${gameRecord.created}
       </div>
       <div>          
-
-
-      Players: ${gameRecord.player}
-      </div>`;
-    
-
-    historyItem += `
+        Players: ${gameRecord.player}
+      </div>
       <div>          
       Time: ${gameRecord.time}
       </div>
-      `;
+    `;
 
-    
-
-      
+    //Individul Information
     switch (gameRecord.game) {
       case "memoria":
-        // historyItem += `Winner: ${gameRecord.winner}`;
+        // historyItem += `<div>Winner: ${gameRecord.winner}</div>`;
         break;
       case "quatro":
-        historyItem += `Winner: ${gameRecord.winner}`;
+        historyItem += `<div>Winner: ${gameRecord.winner}</div>`;
         break;
       case "galo":
-        historyItem += `Winner: ${gameRecord.winner}`;
+        historyItem += `<div>Winner: ${gameRecord.winner}</div>`;
         break;
-        } 
-
-
-
-
-
+    } 
 
     historyItem += `
       </div>
