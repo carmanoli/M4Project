@@ -100,7 +100,7 @@ let counter = 9
         $(".cell").click(function () {
             var bg = $(this).css("background-image");
             if (bg === "none" || bg === "") {
-                var fig = "url(" + turn.toString() + ".png)";
+                var fig = "url(" + "./galo/" + turn.toString() + ".png)";
                 $(this).css("background-image", fig);
                 turn = (turn === 1 ? 2 : 1);
                 setTimeout(winningCondition, 10);
@@ -137,7 +137,7 @@ let counter = 9
             if ((checkA == checkB) && (checkB == checkC) && (checkA != "none" && checkA != "")) {
                 rondas = rondas + 1;
 
-                if (checkA.indexOf("1.png") >= 0) {
+                if (checkA.indexOf("./galo/1.png") >= 0) {
                     winner = "X";
                     player1Points = player1Points + 1;
                 } else {
