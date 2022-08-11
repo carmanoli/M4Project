@@ -343,7 +343,7 @@ memoriaGame.gameState.forEach(
 
 // Repeated times is when the card was flipped more than 2 times, ie,
 // when it was not only to view its face and to make a match, 
-// but as the user didn't memorize its face it repeated the flip
+// but, as the user didn't memorize its face, it repeated the flip
 function getRepeatedFlips() {
   console.log("getRepeatedFlips: " + JSON.stringify(memoriaGame.gameState));
   console.log("getRepeatedFlips: " + memoriaGame.gameState.map(card => card.flipTimes));

@@ -124,7 +124,7 @@ function saveGameRecord(gameRecord){
   if (M4G_string) {
     M4G = JSON.parse(M4G_string);
   }
-  M4G.push(gameRecord)
+  M4G.unshift(gameRecord)
   localStorage.setItem("M4G", JSON.stringify(M4G));
 }
 

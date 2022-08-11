@@ -8,6 +8,10 @@
   <link rel="stylesheet" href="./memoria/memoria.css">
   <link rel="stylesheet" href="style.css">
   <script src="./memoria/memoria-game.js"></script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
 
   <script src="./memoria/memoria.js"></script>
 </head>
@@ -162,11 +166,63 @@
 
 
 
+    <div class="row mt-5">
+      <div class="col-1">
+      </div>
+      <div style="border-radius: 75px;" class="col-10  p-3 border border-danger border-5">
+
+
+
+        <canvas id="memoria-chart" style="width:100%;"></canvas>
+
+
+
+      </div>
+      <div class="col-1">
+      </div>
+    </div>
+
+
+
+    <script>
+      var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+      var yValues = [55, 49, 44, 24, 15];
+      var barColors = [
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145"
+      ];
+
+      setTimeout(createChart, 1000); // por alguma razão demora a carregar o chart.js do cdn
+      // damos algum tempo antes de evocar a criação do chart
+      
+      function createChart(){
+        new Chart("memoria-chart", {
+        type: "line",
+        data: {
+          labels: xValues,
+          datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+          }]
+        },
+        options: {
+          title: {
+            display: true,
+            text: "World Wide Wine Production 2018"
+          }
+        }
+      });
+      }
+      </script>
 
 
 
 
-    
+
+
 
   </div>
 
