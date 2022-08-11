@@ -178,10 +178,14 @@ let counter = 9
         function roundWinner () {
             if (rondas === 5) {
                 if (player1Points > player2Points) {
-                    alert ("<h1>X venceu a ronda!</h1>");
+                    alert ("X venceu a ronda!");
                     $(".cell").off("click");
-                } else { alert ("<h1>O venceu a ronda!</h1>");
+                    minutes = 0
+                    seconds = 0
+                } else { alert ("O venceu a ronda!");
                         $(".cell").off("click");
+                        minutes = 0
+                        seconds = 0
                     }
                 rondas = 0;
             }
