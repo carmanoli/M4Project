@@ -21,7 +21,7 @@ function showHistory(M4G_json) {
       case "quatro":
         historyItem += ` border-warning `;
         break;
-      case "memoria":
+      case "galo":
         historyItem += ` border-primary `;
         break;
         } 
@@ -35,16 +35,37 @@ function showHistory(M4G_json) {
       Data: ${gameRecord.created}
       </div>
       <div>          
+
+
       Players: ${gameRecord.player}
       </div>`;
     
-    if (gameRecord.game) {
+
     historyItem += `
       <div>          
       Time: ${gameRecord.time}
       </div>
       `;
-    }
+
+    
+
+      
+    switch (gameRecord.game) {
+      case "memoria":
+        // historyItem += `Winner: ${gameRecord.winner}`;
+        break;
+      case "quatro":
+        historyItem += `Winner: ${gameRecord.winner}`;
+        break;
+      case "galo":
+        historyItem += `Winner: ${gameRecord.winner}`;
+        break;
+        } 
+
+
+
+
+
 
     historyItem += `
       </div>
