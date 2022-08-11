@@ -1,5 +1,4 @@
 $(document).ready(function(){
-  //localStorage.clear();
   let M4G_string = localStorage.getItem("M4G");
    
   if (M4G_string) {
@@ -91,7 +90,6 @@ function showHistory(M4G_json) {
   })
  
 }
-//localStorage.clear();
 deleteHistoricItem = (uuid) =>{
   if(confirm('Deseja mesmo excluir este histórico?')){
     let M4G_json = JSON.parse(localStorage.getItem("M4G"));
