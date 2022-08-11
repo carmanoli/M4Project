@@ -1,0 +1,124 @@
+
+body h1{
+    text-align: center;
+}
+/*
+.player1{
+    float:left;
+}
+
+.player2{
+    float:right;
+}
+*/
+
+#table{
+    width: 603px;
+    height: 600px;
+    margin: auto;
+    margin-top: 10rem;
+}
+
+.line{
+    height:200px;
+    border-bottom:solid 1px;
+}
+
+.cell{
+    width:200px;
+    height:100%;
+    border-right:solid 1px;
+    float:left;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.hidden {
+    display: none;
+}
+
+#xis,#circulo {
+    width:30px;
+    height:30px;
+}
+
+.reset {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #EEE;
+    border: none;
+    color: rgb(13, 161, 146);
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+}
+
+.players {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+div#player1, div#player2 {
+    display: flex;
+    align-items: center;
+}
+
+div#player1 > img, div#player2 > img {
+    margin-left: 10px;
+}
+
+#start-btn {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 3%;
+}
+
+.game-info{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    max-width: 800px;
+    margin: auto;
+    font-size: 25px;
+    text-align: center;
+}
+
+#image-0,#image-X{
+    width: 25px;
+    height: 25px;
+}
+
+.timer{
+    text-align: center;
+}
+
+.cell:last-child, .line:last-child {
+    border: none;
+}
+
+.after-game{
+    position: relative;
+    margin: auto;
+    margin-top: -450px;
+    width: 500px;
+    height:300px;
+    text-align: center;
+    border: 1px solid black;
+    background-color: white;
+}
+
+#rounds{
+    text-align: center;
+    font-size: 20px;
+}
+
