@@ -65,8 +65,8 @@ function showHistory(M4G_json) {
         <h3>Winner:</h3> 
         <div>${gameRecord.winner}</div>
         </div>
-        <div class="delete-history-btn">
-        <i class='bx bx-x'></i>
+        <div class="delete-historic-div">
+        <i class="delete-history-btn" class='bx bx-x'></i>
         </div>`;
         break;
       case "galo":
@@ -87,3 +87,10 @@ function showHistory(M4G_json) {
 
   })
 }
+/*
+const deleteHistoricBtn = document.querySelector('.delete-history-btn')
+
+deleteHistoricBtn.addEventListener('click',()=>{
+  console.log('ok')
+})
+*/
