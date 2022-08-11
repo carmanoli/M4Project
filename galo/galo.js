@@ -1,6 +1,4 @@
 
-// Estrutura geral do arquivo jQuery functions.js
-
 $(function(){
 
     const player1Name = document.querySelector('#player1-name');
@@ -9,14 +7,15 @@ $(function(){
     const player2El = document.querySelector('#player-two');
     const startBtn = document.querySelector('#start-btn');
     const roundsEl = $('#rounds')
+    const beforeGame = document.querySelector(".before-game");
+    const gamecontent = document.querySelector(".game-content");
+    const timerEl = document.querySelector('.timer');
 
     let isPlaying = false;
     let seconds = 0;
     let minutes = 0;
-    const beforeGame = document.querySelector(".before-game");
-    const gamecontent = document.querySelector(".game-content");
-
     let rondas= 0;
+
     let round1Winner = null;
     let round2Winner = null;
     let round3Winner = null;
@@ -26,9 +25,6 @@ $(function(){
     let player1Points = null;
     let player2Points = null;
 
-    // ///////////////////////////////// JIMMY
-    // const viewBoardBtn = document.querySelector('#last-play-btn')
-    // const gameOverDisplayEl = document.querySelector('.winner-display');
 
 // funcao salvar nome jogadores no local storage
     function saveGameRecord(gameRecord){
@@ -42,13 +38,6 @@ $(function(){
     }
 
 
-
-
-
-// timer
-
-    const timerEl = document.querySelector('.timer');
-
 //Timmer
     countTimer = () => {
         setInterval(() => {
@@ -60,7 +49,6 @@ $(function(){
 
             let s = seconds < 10 ? '0' + seconds : seconds;
             let m = minutes < 10 ? '0' + minutes : minutes;
-
 
             timerEl.innerHTML = m + ':' + s;
 
@@ -75,21 +63,22 @@ $(function(){
 
         //Check if inputs have names
         if(player1Name.value != '' && player2Name.value != ''){
-
-            player1El.innerHTML = player1Name.value
-            player2El.innerHTML = player2Name.value
+            isPlaying = true;
+            player1El.innerHTML = player1Name.value;
+            player2El.innerHTML = player2Name.value;
 
             //oculta box com de inicio com nomes players
             beforeGame.classList.add ("hidden");
             gamecontent.classList.remove ("hidden");
-           //resetBtn.classList.remove ("reset");
+            //////////
+            //resetBtn.classList.remove ("reset");
+           ///////////
             countTimer();
 
 
             // pop up faltam nomes players
         }else{
             alert('Missing player name!')
-
        }
 
     })
@@ -99,8 +88,11 @@ $(function(){
 let counter = 9
         $(".cell").click(function () {
             var bg = $(this).css("background-image");
+            if (!isPlaying) {
+                return
+            }
             if (bg === "none" || bg === "") {
-                var fig = "url(" + "./galo/" + turn.toString() + ".png)";
+                var fig = "url(" + turn.toString() + ".png)";
                 $(this).css("background-image", fig);
                 turn = (turn === 1 ? 2 : 1);
                 setTimeout(winningCondition, 10);
@@ -113,10 +105,7 @@ let counter = 9
         var turn = 1;
         var winner = "";
 
-
-        // Função determina se ha 3 celulas com mesma imagem e aponta quem ganhou
-
-
+        // funcao q limpa as celulas apos alguem ganhar a jogada
     function clearTable () {
         $("#cell1").css("background-image", "");
         $("#cell2").css("background-image", "");
@@ -129,6 +118,7 @@ let counter = 9
         $("#cell9").css("background-image", "");
     }
 
+    // Função determina se ha 3 celulas com mesma imagem e aponta quem ganhou
         function whoWon(a, b, c) {
 
             var checkA = $("#cell" + a).css("background-image");
@@ -137,7 +127,7 @@ let counter = 9
             if ((checkA == checkB) && (checkB == checkC) && (checkA != "none" && checkA != "")) {
                 rondas = rondas + 1;
 
-                if (checkA.indexOf("./galo/1.png") >= 0) {
+                if (checkA.indexOf("1.png") >= 0) {
                     winner = "X";
                     player1Points = player1Points + 1;
                 } else {
@@ -160,10 +150,14 @@ let counter = 9
                 whoWon(1, 5, 9) || whoWon(3, 5, 7)
             ) {
                 //$("#result").html("<h1>O jogador " + winner + "venceu! </h1>");
-               // $(".cell").off("click");
+                //////////
+                // $(".cell").off("click");
+                //////////
                 clearTable ();
                 alert("Parabens o jogador " + winner + " venceu a jogada !");
+                //////////
                 // resetBtn.classList.remove ("reset");
+                //////////
                 counter = 9;
             } else if (counter <= 0){
                 clearTable()
@@ -175,29 +169,23 @@ let counter = 9
 
         }
 
+        // funcao do ganhador da ronda (menlhor de 5 jogadas)
         function roundWinner () {
             if (rondas === 5) {
                 if (player1Points > player2Points) {
                     alert ("X venceu a ronda!");
-                    $(".cell").off("click");
-                    minutes = 0
-                    seconds = 0
+
                 } else { alert ("O venceu a ronda!");
-                        $(".cell").off("click");
-                        minutes = 0
-                        seconds = 0
+
                     }
+                // reset do timer
                 rondas = 0;
+                seconds = 0
+                minutes = 0;
+                //impede jogar mais após a ronda (5 jogadas)
+                $(".cell").off("click");
+
             }
         }
 
-    // ///////////////////////////////// JIMMY
-   /* viewBoardBtn.addEventListener('click', () =>{
-        gameOverDisplayEl.classList.add('reduce-opacity')
-        setTimeout(()=>{
-            gameOverDisplayEl.classList.remove('reduce-opacity')
-        },3000)
-
-    })
-    */
 })
