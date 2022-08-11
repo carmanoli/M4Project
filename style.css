@@ -3,6 +3,12 @@
 :root{
   --ligth-theme-background: white;
   --dark-theme-background: #2f363e;
+  --letters-color: black;
+}
+
+body.dark{
+  background-color: var(--dark-theme-background);
+  --letters-color: #fff;
 }
 
 *{
@@ -41,10 +47,6 @@ transition: transform 0.2s linear;
 
 .checkbox:checked + .label .ball{
   transform: translateX(24px);
-  background-color: var(--dark-theme-background);
-}
-
-body.dark{
   background-color: var(--dark-theme-background);
 }
 
@@ -115,4 +117,9 @@ body.dark{
 
 .footer {
   position: relative;
+}
+
+/*======= historic =======*/
+.historic-colors{
+  color: var(--letters-color);
 }

@@ -9,6 +9,8 @@ const historicBtn = document.querySelector('#index-historic-btn');
 
 const iconImg = document.querySelector('#site-icon')
 
+let currentPage;
+
 //Ligth/Dark Function
 checkbox.addEventListener('change', () =>{
   document.body.classList.toggle('dark')
@@ -49,6 +51,10 @@ $(document).ready(() => {
 })
 
 function loadPage(htmlPage) {
+  if(currentPage === htmlPage) {
+    return;
+  }
+  currentPage = htmlPage;
   $('#content').load(`${htmlPage}`);
 }
 
