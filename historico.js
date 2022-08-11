@@ -1,5 +1,5 @@
 $(document).ready(function(){
-//   localStorage.clear();
+  // localStorage.clear();
   let M4G_string = localStorage.getItem("M4G");
    
   if (M4G_string) {
