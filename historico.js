@@ -3,7 +3,7 @@ $(document).ready(function(){
   let M4G_string = localStorage.getItem("M4G");
    
   if (M4G_string) {
-    $("#history").append(M4G_string);
+    //$("#history").append(M4G_string);
     showHistory(JSON.parse(M4G_string));
   }
 })
@@ -55,24 +55,27 @@ function showHistory(M4G_json) {
     //Individul Information
     switch (gameRecord.game) {
       case "memoria":
-        /* historyItem += `<div>
-        <h3>Winner:</h3>
-        <div>${gameRecord.winner}</div>
-        </div>`; */
+        historyItem += 
+        `<div class="delete-historic-div" data-id="${gameRecord.uuid}" onclick="deleteHistoricItem(this.dataset.id)">
+        <i class='bx bx-x delete-history-btn'></i>
+        </div>`
         break;
       case "quatro":
         historyItem += `<div class="historic-winner-info">
         <h3>Winner:</h3> 
         <div>${gameRecord.winner}</div>
         </div>
-        <div class="delete-historic-div">
-        <i class="delete-history-btn" class='bx bx-x'></i>
+        <div class="delete-historic-div" data-id="${gameRecord.uuid}" onclick="deleteHistoricItem(this.dataset.id)">
+        <i class='bx bx-x delete-history-btn'></i>
         </div>`;
         break;
       case "galo":
         historyItem += `<div>
         <h3>Winner:</h3>
         <div>${gameRecord.winner}</div>
+        </div>
+        <div class="delete-historic-div" data-id="${gameRecord.uuid}" onclick="deleteHistoricItem(this.dataset.id)">
+        <i class='bx bx-x delete-history-btn'></i>
         </div>`;
         break;
     } 
@@ -80,17 +83,22 @@ function showHistory(M4G_json) {
     historyItem += `
       </div>
     `;
-
+    
     $("#history").append(
       historyItem
     );
 
   })
+ 
 }
-/*
-const deleteHistoricBtn = document.querySelector('.delete-history-btn')
-
-deleteHistoricBtn.addEventListener('click',()=>{
-  console.log('ok')
-})
-*/
+//localStorage.clear();
+deleteHistoricItem = (uuid) =>{
+  if(confirm('Deseja mesmo excluir este histórico?')){
+    let M4G_json = JSON.parse(localStorage.getItem("M4G"));
+    const element =  M4G_json.filter(object => object.uuid != uuid)
+    $("#history").empty();
+    showHistory(element)
+    localStorage.removeItem("M4G")
+    localStorage.setItem("M4G",JSON.stringify(element))
+  }
+}
