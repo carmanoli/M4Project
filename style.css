@@ -49,7 +49,10 @@ transition: transform 0.2s linear;
   transform: translateX(24px);
   background-color: var(--dark-theme-background);
 }
-
+i{
+  font-size: 20px;
+ display: flex;
+}
 /* ======== Home page ======= */
 
 #site-icon{
@@ -122,4 +125,30 @@ transition: transform 0.2s linear;
 /*======= historic =======*/
 .historic-colors{
   color: var(--letters-color);
+}
+
+.historic-info-container{
+  justify-content: space-between;
+  display: flex;
+  text-align: center;
+}
+
+
+.historic-game-info h3, .historic-data-info h3, .historic-players-info h3, .historic-time-info h3, .historic-winner-info h3{
+  font-size: 15px;
+}
+
+.delete-history-btn{
+  border-radius: 50%;
+    border: 1px solid var(--dark-theme-background);
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-history-btn i {
+  font-size: 20px;
 }

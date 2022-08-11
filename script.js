@@ -6,6 +6,7 @@ const galoBtn = document.querySelector('#index-galo-btn');
 const quatroBtn = document.querySelector('#index-quatro-btn');
 const memoriaBtn = document.querySelector('#index-memoria-btn');
 const historicBtn = document.querySelector('#index-historic-btn');
+//const deleteHistoricBtn = document.querySelector
 
 const iconImg = document.querySelector('#site-icon')
 

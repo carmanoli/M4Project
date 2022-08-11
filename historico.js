@@ -12,7 +12,7 @@ function showHistory(M4G_json) {
   M4G_json.forEach(function(gameRecord){
     let historyItem = "";
     historyItem += `
-      <div class="border rounded-pill historic-colors`;
+      <div class="border rounded-pill historic-colors historic-info-container`;
 
       //Border Color
     switch (gameRecord.game) {
@@ -29,31 +29,51 @@ function showHistory(M4G_json) {
 
     //Common information
     historyItem += `
-      border-5 mt-3 p-3 ps-5">
-      <div>
-        Jogo: ${gameRecord.game}
+      border-5 mt-3 p-3 ps-5 pe-5 align-items-center">
+      <div class="historic-game-info">
+        <h3>Jogo:</h3> 
+        <div>${gameRecord.game}</div>
       </div>
-      <div>       
-        Data: ${gameRecord.created}
+      <div class="historic-data-info">       
+        <h3>Data:</h3> 
+        <div>${gameRecord.created}</div>
       </div>
-      <div>          
-        Players: ${gameRecord.player}
+      <div class="historic-data-info">       
+        <h3>Horas:</h3> 
+        <div>${gameRecord.hours}</div>
       </div>
-      <div>          
-      Time: ${gameRecord.time}
+      <div class="historic-players-info">          
+        <h3>Players:</h3>
+        <div> ${gameRecord.player}</div>
+      </div>
+      <div class= "historic-time-info">          
+        <h3>Time:</h3>
+        <div>${gameRecord.time}</div>
       </div>
     `;
 
     //Individul Information
     switch (gameRecord.game) {
       case "memoria":
-        // historyItem += `<div>Winner: ${gameRecord.winner}</div>`;
+        /* historyItem += `<div>
+        <h3>Winner:</h3>
+        <div>${gameRecord.winner}</div>
+        </div>`; */
         break;
       case "quatro":
-        historyItem += `<div>Winner: ${gameRecord.winner}</div>`;
+        historyItem += `<div class="historic-winner-info">
+        <h3>Winner:</h3> 
+        <div>${gameRecord.winner}</div>
+        </div>
+        <div class="delete-history-btn">
+        <i class='bx bx-x'></i>
+        </div>`;
         break;
       case "galo":
-        historyItem += `<div>Winner: ${gameRecord.winner}</div>`;
+        historyItem += `<div>
+        <h3>Winner:</h3>
+        <div>${gameRecord.winner}</div>
+        </div>`;
         break;
     } 
 
