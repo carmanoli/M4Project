@@ -234,9 +234,6 @@ function handleTurnEvent(cardId){
   memoriaGame.turnState++;
   card.cardState = 'shown';
   
-  
-
-
   let cardWidth = $(`#cardKey-${cardId}`).width();
   $(`#cardKey-${cardId}`).animate(
     {
