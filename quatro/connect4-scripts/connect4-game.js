@@ -61,7 +61,7 @@ const clickCell = (idValue) =>{
                     
                     let s = seconds < 10 ? '0' + seconds: seconds;
                     let m = minutes < 10 ? '0' + minutes: minutes;
-                    let minOrSec = minutes >= 1? 'minutes' : 'seconds'
+                    let minOrSec = minutes >= 10? 'minutes' : 'seconds'
                     timerEl.innerHTML = m + ':' + s;
                     finalTimerEl.innerHTML = `The game lasted ${m}:${s} ${minOrSec}`
     

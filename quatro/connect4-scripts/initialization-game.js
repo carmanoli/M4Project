@@ -12,8 +12,11 @@ let gameEnded = true
 const init = () =>{
     gameRecord.uuid = uuidv4();
     //Adicionar a data
-    const todayHours = Date().split(' ')[4]
-    gameRecord.created = todayHours;
+    const today = Date().split(' ');
+    const todayDay = `${today[3]}/${today[1]}/${today[2]}`
+    const todayHours = today[4]
+    gameRecord.created = todayDay;
+    gameRecord.hours = todayHours;
    
     startingDisplayEl.classList.add('hidden');
     overallGameDisplay.classList.remove('hidden');
