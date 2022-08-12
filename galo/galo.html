@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
 
-        <link rel="stylesheet" type="text/css" href="galo.css"/>
+        <link rel="stylesheet" type="text/css" href="./galo/galo.css"/>
 
     </head>
 
@@ -18,11 +18,11 @@
         <div class= "before-game">
             <div class = "players">
                 <div id= "player1">
-                <input type="text" placeholder="Player 1 Name" id="player1-name"><img src="1.png" id="xis">
+                <input type="text" placeholder="Player 1 Name" id="player1-name"><img src="./galo/1.png" id="xis">
             </div>
             <h3> VS </h3>
             <div id= "player2">
-                <input type="text" placeholder="Player 2 Name" id="player2-name"><img src="2.png" id="circulo">
+                <input type="text" placeholder="Player 2 Name" id="player2-name"><img src="./galo/2.png" id="circulo">
             </div>
 
             </div>
@@ -34,14 +34,14 @@
 <div class="game-content hidden">
     <div class="game-info ">
         <div class="imgXis active-player">
-            <img src="1.png" alt="X" id="image-X">
+            <img src="./galo/1.png" alt="X" id="image-X">
             <span id="player-one"></span>
         </div>
 
         <div class ="timer"></div>
 
         <div class="imgCirculo">
-            <img src="2.png" alt="O" id="image-0">
+            <img src="./galo/2.png" alt="O" id="image-0">
             <span id="player-two"></span>
         </div>
     </div>
@@ -72,27 +72,13 @@
 </div>
     <div class="after-game hidden">
         <h3 id="result"></h3>
-        <a href="#"><button>Home</button></a>
+        <a href="../index.html"><button>Home</button></a>
 
     </div>
     </div>
 
-        <!-- /////////////////////////////
-              <div class="winner-display hidden">
-              <h4 id="winner-result">PLayer Venceu</h4>
-              <div id="winner-color"></div>
-              <p id="game-time">O jogo durou x tempo</p>
-              <div class="options-after-game">
-                  <input type="button" value="View Board" id="last-play-btn">
-                  <input type="button" value="New Game" id="new-game-btn">
-                  <a href="../index.html">
-                      <input type="button" value="Menu" id="menu-btn">
-                  </a>
-              </div>
-              </div>
-  -->
               </body>
 
           <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-          <script type="text/javascript" src="galo.js"></script>
+          <script type="text/javascript" src="./galo/galo.js"></script>
           </html>

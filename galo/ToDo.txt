@@ -1,0 +1,5 @@
+// Rondas
+1-Criar as variaveis necessárias (let rondas, let round1Winner, let round2Winner, let round3Winner, let round4Winner, let round5Winner);
+2-Uma função que dê reset as variaveis e adicione 1 aos resultados;
+3- Uma condição que verifica se algum jogador ganhou 3 rondas, se ganhou, termina o jogo, senão continua a jogar;
+4- Função para terminar o jogo, incluindo o tempo, e passar o valor das variaveis;

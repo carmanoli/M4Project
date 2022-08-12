@@ -6,6 +6,7 @@ $(function(){
     const player1El = document.querySelector('#player-one');
     const player2El = document.querySelector('#player-two');
     const startBtn = document.querySelector('#start-btn');
+    const afterGame = document.querySelector('.after-game');
     const roundsEl = $('#rounds')
     const beforeGame = document.querySelector(".before-game");
     const gamecontent = document.querySelector(".game-content");
@@ -184,6 +185,7 @@ let counter = 9
                 minutes = 0;
                 //impede jogar mais após a ronda (5 jogadas)
                 $(".cell").off("click");
+                afterGame.classList.remove('hidden')
 
             }
         }
