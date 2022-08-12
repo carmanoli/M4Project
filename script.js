@@ -74,8 +74,9 @@ function getQuoteData(){
     //console.log(quoteData);
   })
   .done(function () {
-    let quote = JSON.stringify(quoteData[Math.floor(Math.random()*quoteData.length)].text);
-    let author = JSON.stringify(quoteData[Math.floor(Math.random()*quoteData.length)].author);
+    let quoteNumber = Math.random()*quoteData.length;
+    let quote = JSON.stringify(quoteData[Math.floor(quoteNumber)].text);
+    let author = JSON.stringify(quoteData[Math.floor(quoteNumber)].author);
     // alert (quote + " " + author);
     $('#scroll-text').text(quote + " " + author.replace(/['"]+/g, ''));
 

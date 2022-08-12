@@ -2,7 +2,7 @@ $(document).ready(function(){
   let M4G_string = localStorage.getItem("M4G");
    
   if (M4G_string) {
-    //$("#history").append(M4G_string);
+    $("#history").append(M4G_string);
     showHistory(JSON.parse(M4G_string));
   }
 })
